@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import app from './modules/app'
 import permission from './modules/permission'
+import user from './modules/user'
 
 
 Vue.use(Vuex)
@@ -10,7 +11,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
         app,
-        permission
+        permission,
+        user
     },
     state: {
 
