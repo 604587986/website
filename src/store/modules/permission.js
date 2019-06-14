@@ -4,6 +4,6 @@ const permission = {
     state: {
         // addRouters: adminRouter,
         addRouters: userRouter
-    }
+    },
 }
 export default permission

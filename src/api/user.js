@@ -12,3 +12,6 @@ export function login(data) {
         data:data,
     })
 }
+export function getUserInfo() {
+    return request('/login/init')
+}
