@@ -27,6 +27,8 @@ const user = {
             state.site = null
             state.group = null
             Cookie.remove('QH_STATUS')
+            Cookie.remove('mock_user')
+            Cookie.remove('mock_site')
         }
     },
     getters: {
@@ -54,8 +56,13 @@ const user = {
         login({ commit }, data) {
             return new Promise((resolve, reject) => {
                 login(data).then(res => {
-                    Cookie.set("QH_STATUS", true, { expires: 1 })
-                    resolve(res)
+                    if (res) {
+                        Cookie.set("QH_STATUS", true, { expires: 1 })
+                        resolve(res)
+                    } else {
+                        reject()
+                    }
+
                 })
             })
         },

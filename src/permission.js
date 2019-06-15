@@ -17,16 +17,6 @@ router.beforeEach((to, from, next) => {
         } else {
             if (!store.getters.status) {
                 console.log(111)
-                // store.dispatch('getUserInfo').then(res => {
-                //     router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-                //     next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-                // }).catch(() => {
-                //     notification.error({ message: '错误', description: '请求用户信息失败，请重试' })
-                //     next({ path: '/login' })
-
-                //     //   store.dispatch('Logout').then(() => {
-                //     //   })
-                // })
                 store.dispatch('getUserInfo').then(res => {
                     console.log(store.getters.addRouters)
                     router.addRoutes(store.getters.addRouters)

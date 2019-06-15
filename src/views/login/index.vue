@@ -84,8 +84,6 @@ export default {
     },
     getCaptcha() {
       captcha().then(res => {
-        console.log(res);
-
         this.captchaImg = res.data[0];
       });
     },
