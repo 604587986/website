@@ -1,13 +1,13 @@
 
-import { login } from '@/api/user'
+import { login, getUserInfo, logout } from '@/api/user'
 import { adminRouter, userRouter } from '@/config/router.config.js'
+import Cookie from "js-cookie"
 
 const user = {
     state: {
-        user: {},
-        site:{},
-        group: {},
-        addRouters: []
+        user: null,
+        site: null,
+        group: null,
     },
     mutations: {
         SET_USER(state, user) {
@@ -19,24 +19,65 @@ const user = {
         SET_GROUP(state, group) {
             state.group = group
         },
+        // SET_STATUS(state, status) {
+        //     state.status = status
+        // }
+        LOGOUT(state) {
+            state.user = null
+            state.site = null
+            state.group = null
+            Cookie.remove('QH_STATUS')
+        }
     },
     getters: {
         addRouters(state) {
-            if (state.group.level === 0) {
-                return adminRouter
-            }else{
-                return userRouter
+            if (state.group) {
+                if (state.group.level === 0) {
+                    return adminRouter
+                } else {
+                    return userRouter
+                }
+            } else {
+                return []
             }
+
+        },
+        status(state) {
+            if (state.user) {
+                return true
+            }
+            return false;
         }
 
     },
     actions: {
         login({ commit }, data) {
-            login(data).then(res => {
-                commit('SET_USER', res.data.user || {})
-                commit('SET_SITE', res.data.site || {})
-                commit('SET_GROUP', res.data.group || {})
+            return new Promise((resolve, reject) => {
+                login(data).then(res => {
+                    Cookie.set("QH_STATUS", true, { expires: 1 })
+                    resolve(res)
+                })
             })
+        },
+        logout({ commit }) {
+            return new Promise((resolve, reject) => {
+                logout().then(res => {
+                    commit('LOGOUT')
+                    resolve(res)
+                })
+            })
+        },
+        getUserInfo({ commit }, data) {
+            return new Promise((resolve, reject) => {
+                getUserInfo().then(res => {
+                    commit('SET_USER', res.data.user || null)
+                    commit('SET_SITE', res.data.site || null)
+                    commit('SET_GROUP', res.data.group || null)
+
+                    resolve(res)
+                })
+            })
+
         }
     }
 }

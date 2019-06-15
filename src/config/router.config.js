@@ -143,6 +143,9 @@ export const adminRouter = [{
             ]
         },
     ]
+},
+{
+    path: '*', redirect: '/404', hidden: true
 }]
 
 export const userRouter = [{

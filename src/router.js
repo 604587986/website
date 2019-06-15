@@ -7,8 +7,7 @@ import login from './views/login'
 
 Vue.use(Router)
 
-
-const router = new Router({
+export default new Router({
   routes: [
     {
       path: '/login',
@@ -17,12 +16,3 @@ const router = new Router({
     }
   ]
 })
-
-
-router.beforeEach((to, form, next) => {
-  next()
-})
-
-
-
-export default router

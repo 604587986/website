@@ -41,7 +41,7 @@
           { rules: [{ required: true, message: 'Please input your captcha!' }] }
         ]"
           ></a-input>
-          <img :src="captchaImg" alt>
+          <img :src="captchaImg" alt @click="getCaptcha">
         </a-form-item>
         <a-form-item>
           <a-checkbox
@@ -59,11 +59,10 @@
         </a-form-item>
       </a-form>
     </div>
-    <a-button type="primary" @click="getUser">huoqu</a-button>
   </div>
 </template>
 <script>
-import { captcha, getSiteInfo, getUserInfo } from "@/api/user";
+import { captcha, getSiteInfo, } from "@/api/user";
 export default {
   data() {
     this.form = this.$form.createForm(this);
@@ -99,13 +98,12 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           const data = this.form.getFieldsValue();
-          dispatch("login", data);
+          dispatch("login", data).then((res)=>{
+            this.$router.push('/')
+          });
         }
       });
     },
-    getUser() {
-      getUserInfo();
-    }
   }
 };
 </script>

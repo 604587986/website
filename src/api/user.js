@@ -15,3 +15,6 @@ export function login(data) {
 export function getUserInfo() {
     return request('/login/init')
 }
+export function logout() {
+    return request('/login/logout')
+}

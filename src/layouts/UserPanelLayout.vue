@@ -19,7 +19,7 @@ export default {
 		};
 	},
 	created() {
-		this.panelRouterMap(this.$router.options.routes);
+		this.panelRouterMap(this.$store.getters.addRouters);
 	},
 	methods: {
 		panelRouterMap(mapRouters = []) {
