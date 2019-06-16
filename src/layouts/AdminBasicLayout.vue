@@ -1,17 +1,14 @@
 <template>
   <div class="admin-basic-layout">
     <a-layout :style="{minHeight:'100vh'}">
-      <a-layout-header class="header">
+      <a-layout-header>
         <the-header></the-header>
       </a-layout-header>
-      <a-layout>
+      <the-nav></the-nav>
+      <a-layout class="layout-content">
         <side-menu mode="inline" :menus="menus" :collapsed="false" :collapsible="true"></side-menu>
         <a-layout style="padding: 0 24px">
-          <a-breadcrumb style="margin: 16px 0">
-            <a-breadcrumb-item>Home</a-breadcrumb-item>
-            <a-breadcrumb-item>List</a-breadcrumb-item>
-            <a-breadcrumb-item>App</a-breadcrumb-item>
-          </a-breadcrumb>
+          <wy-crumb></wy-crumb>
           <a-layout-content
             :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
           >
@@ -26,7 +23,8 @@
   </div>
 </template>
 <script>
-import theHeader from "./Header";
+import theHeader from "./AdminHeader";
+import theNav from "./AdminNav";
 import theFooter from "./Footer";
 import RouteView from "./RouteView";
 
@@ -48,9 +46,13 @@ export default {
   },
   components: {
     theHeader,
+    theNav,
     theFooter,
     SideMenu,
     RouteView
   }
 };
 </script>
+<style lang="less" scoped>
+
+</style>

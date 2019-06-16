@@ -69,19 +69,25 @@ const user = {
         logout({ commit }) {
             return new Promise((resolve, reject) => {
                 logout().then(res => {
-                    commit('LOGOUT')
-                    resolve(res)
+                    if (res) {
+                        commit('LOGOUT')
+                        resolve(res)
+                    }
+
                 })
             })
         },
         getUserInfo({ commit }, data) {
             return new Promise((resolve, reject) => {
                 getUserInfo().then(res => {
-                    commit('SET_USER', res.data.user || null)
-                    commit('SET_SITE', res.data.site || null)
-                    commit('SET_GROUP', res.data.group || null)
+                    if (res) {
+                        commit('SET_USER', res.data.user || null)
+                        commit('SET_SITE', res.data.site || null)
+                        commit('SET_GROUP', res.data.group || null)
 
-                    resolve(res)
+                        resolve(res)
+                    }
+
                 })
             })
 

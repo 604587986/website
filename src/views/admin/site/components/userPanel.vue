@@ -1,14 +1,16 @@
 <template>
   <div>
-    <a-collapse v-if="keys.length">
-      <a-collapse-panel v-for="item in keys" :key="item" :header="item">
-        <a-tag
-          v-for="user in userList[item]"
-          :key="user.id"
-          @click="saveUserAndMock(user.id)"
-        >{{user.nickname}}</a-tag>
-      </a-collapse-panel>
-    </a-collapse>
+    <a-spin :spinning="spinning">
+      <a-collapse v-if="keys.length">
+        <a-collapse-panel v-for="item in keys" :key="item" :header="item">
+          <a-tag
+            v-for="user in userList[item]"
+            :key="user.id"
+            @click="saveUserAndMock(user.id)"
+          >{{user.nickname}}</a-tag>
+        </a-collapse-panel>
+      </a-collapse>
+    </a-spin>
   </div>
 </template>
 <script>
@@ -19,7 +21,8 @@ import { setTimeout } from "timers";
 export default {
   data() {
     return {
-      userList: {}
+      userList: {},
+      spinning: true
     };
   },
   computed: {
@@ -48,6 +51,7 @@ export default {
         site_id: this.siteId
       };
       getUserList(data).then(res => {
+        this.spinning = false;
         const list = res.data.list;
 
         this.userList = groupBy(list, "group_title");
@@ -57,7 +61,7 @@ export default {
       Cookie.set("mock_user", userId);
       Cookie.set("mock_site", this.siteId);
       setTimeout(() => {
-        location.href = "/"
+        location.href = "/";
       }, 300);
     }
   }

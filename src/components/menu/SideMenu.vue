@@ -1,7 +1,7 @@
 <template>
 	<a-layout-sider
 		:class="['sider', device === 'desktop' ? null : 'shadow', theme ]"
-		width="256px"
+		width="180px"
 		:collapsible="collapsible"
 		v-model="collapsed"
 		:trigger="null"
@@ -33,12 +33,12 @@ export default {
 		theme: {
 			type: String,
 			required: false,
-			default: "dark"
+			default: "light"
 		},
 		collapsible: {
 			type: Boolean,
 			required: false,
-			default: false
+			default: true
 		},
 		collapsed: {
 			type: Boolean,
@@ -63,8 +63,11 @@ export default {
 	}
 };
 </script>
-<style>
-.menu-icon{
+<style lang="less" scoped>
+.light{
+	background: #fff;
+}
+/deep/.menu-icon{
 	margin-right: 10px;
 }
 </style>

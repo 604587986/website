@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
-import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox,Table,Tag,Collapse,Modal } from 'ant-design-vue';
+import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox,Table,Tag,Collapse,Modal,Spin } from 'ant-design-vue';
 Vue.use(Button)
 Vue.use(Layout)
 Vue.use(Menu)
@@ -16,11 +16,13 @@ Vue.use(Table)
 Vue.use(Tag)
 Vue.use(Collapse)
 Vue.use(Modal)
+Vue.use(Spin)
 
 import "@/assets/iconfont/iconfont.css"; //阿里巴巴图标库
+import "@/assets/public.less"; 
 
-
-
+import crumb from "@/components/Breadcrumb"
+Vue.component('wy-crumb',crumb)
 
 
 
