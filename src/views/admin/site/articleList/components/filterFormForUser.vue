@@ -2,16 +2,11 @@
 	<div class="filter-form">
 		<a-form layout="inline" :form="form">
 			<a-form-item label="关键字">
-				<a-input size="small" v-decorator="['keyword']" placeholder="关键字搜索"  @keyup.enter="nextSearch" @blur="nextSearch"></a-input>
+				<a-input size="small" v-decorator="['keyword']" placeholder="关键字搜索" @keyup.enter="nextSearch" @blur="nextSearch"></a-input>
 			</a-form-item>
 			<a-form-item label="审核状态">
 				<a-select size="small" v-decorator="['state_verify']" placeholder="审核状态" allowClear @change="nextSearch">
 					<a-select-option v-for="item in state_verify_list" :value="item.value" :key="item.value">{{item.label}}</a-select-option>
-				</a-select>
-			</a-form-item>
-			<a-form-item label="站点">
-				<a-select size="small" v-decorator="['site_id']" placeholder="所属站点" :dropdownMatchSelectWidth="false" allowClear @change="nextSearchAndGetCategory">
-					<a-select-option v-for="item in site_list" :value="item.id" :key="item.id">{{item.title}}</a-select-option>
 				</a-select>
 			</a-form-item>
 			<a-form-item label="所属分类">
@@ -110,11 +105,9 @@ export default {
 			]
 		};
 	},
-	beforeCreate() {},
 	mounted() {
-		this.getSiteList();
+		this.getCategoryList();
 	},
-	computed: {},
 	methods: {
 		search() {
 			const data = { ...this.form.getFieldsValue() };
@@ -128,37 +121,21 @@ export default {
 			}
 			this.$emit("search", data);
 		},
-		clear(){
+		clear() {
 			this.form.resetFields();
-			this.search()
+			this.search();
 		},
 		nextSearch() {
 			this.$nextTick(() => {
 				this.search();
 			});
 		},
-		nextSearchAndGetCategory() {
-			this.$nextTick(() => {
-				this.category_list = [];
-				this.form.resetFields("category_id");
 
-				this.search();
-				this.getCategoryList();
-			});
-		},
-		//获取站点列表
-		getSiteList() {
-			getSiteList({ page: 0 }).then(res => {
-				this.site_list = res.data.list;
-			});
-		},
 		//获取分类列表
 		getCategoryList() {
-			const site_id = this.form.getFieldValue("site_id");
-			site_id &&
-				getCategoryList({ tree: true, site_id }).then(res => {
-					this.category_list = res.data.list;
-				});
+			getCategoryList({ tree: true }).then(res => {
+				this.category_list = res.data.list;
+			});
 		}
 	}
 };

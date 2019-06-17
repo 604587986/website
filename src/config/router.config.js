@@ -220,6 +220,22 @@ export const userRouter = [{
                 },
             ]
         },
+        {
+            path: '/category',
+            name: 'category',
+            component: RouteView,
+            meta: { title: '分类管理', },
+            redirect: '/category/list',
+            children: [
+                {
+                    path: '/category/list',
+                    name: 'categoryList',
+                    component: () => import('@/views/user/category/list'),
+                    meta: { title: '分类列表', showInPanel: true ,icon:'lanmuliebiao' },
+
+                },
+            ]
+        },
     ]
 
 }]

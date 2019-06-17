@@ -6,6 +6,7 @@
 		<div class="public-container">
 			<div class="card">
 				<user-menu></user-menu>
+				<wy-crumb style="margin-top:40px"></wy-crumb>
 				<router-view></router-view>
 			</div>
 		</div>
@@ -33,8 +34,8 @@ export default {
 	.card {
 		padding: 20px;
 		margin-top: 20px;
-    background: #fff;
-    min-height: 80vh;
+		background: #fff;
+		min-height: 80vh;
 	}
 }
 </style>

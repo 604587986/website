@@ -1,42 +1,16 @@
 <template>
 	<div>
-		<component :is="$store.state.user.group.level === 1 ? 'filterForm':'filterFormForUser'" @search="handleSearch"></component>
+		<filterForm @search="handleSearch"></filterForm>
 		<a-table
 			:columns="columns"
 			:rowKey="record => record.id"
-			:dataSource="data"
+			:dataSource="categoryList"
 			:pagination="pagination"
 			@change="handleTableChange"
 			:loading="loading"
 			size="small"
 		>
-			<span slot="title" slot-scope="text,row">
-				<div v-if="row">
-					<a-tag v-if="row.image_id !== 0" color="#e6a23c">图</a-tag>
-					<a-tag v-if="row.pin_date" color="#e6a23c">{{row.pin_date | overdue}}</a-tag>
-					<a-tag v-if="row.recommend" color="#e6a23c">推荐</a-tag>
-					{{row.title}}
-				</div>
-			</span>
-			<span slot="state" slot-scope="state">
-				<a-tag v-if="state === 1" color="green">正常</a-tag>
-				<a-tag v-if="state === 0" color="orange">草稿</a-tag>
-				<a-tag v-if="state === -1" color="red">已删除</a-tag>
-			</span>
-			<span slot="state_verify" slot-scope="state_verify">
-				<a-tag v-if="state_verify === 1" color="green">通过</a-tag>
-				<a-tag v-if="state_verify === 0" color="orange">待审</a-tag>
-				<a-tag v-if="state_verify === -1" color="red">驳回</a-tag>
-			</span>
-			<span slot="release_state" slot-scope="release_state">
-				<a-tag v-if="release_state === 1" color="green">已发布</a-tag>
-				<a-tag v-if="release_state === 0">未发布</a-tag>
-			</span>
-			<span slot="action" slot-scope="text,row">
-				<a-button size="small" @click="publish(row.id)" v-if="$store.state.user.group.level !== 0">发布</a-button>
-				<a-button size="small" @click="go(row)">前往</a-button>
-				<a-button size="small" @click="preview(row)">预览</a-button>
-			</span>
+
 		</a-table>
 	</div>
 </template>
@@ -44,8 +18,7 @@
 import { getArticleList } from "@/api/article";
 import { buildContent } from "@/api/build";
 import filterForm from "./components/filterForm";
-import filterFormForUser from "./components/filterFormForUser";
-
+import { getCategoryList } from "@/api/category";
 const columns = [
 	{
 		title: "ID",
@@ -109,15 +82,18 @@ export default {
 			},
 			filterData: {},
 			loading: false,
-			columns
+			columns,
+
+			categoryList: []
 		};
 	},
 	components: {
-		filterForm,
-		filterFormForUser
+		filterForm
 	},
 	mounted() {
-		this.getArticleList();
+        this.getArticleList();
+        
+        this.getCategoryList()
 	},
 	methods: {
 		getArticleList() {
@@ -169,6 +145,12 @@ export default {
 		publish(id) {
 			buildContent({ article_id: id }).then(res => {
 				this.$message.success(res.message);
+			});
+		},
+
+		getCategoryList() {
+			getCategoryList({ tree: true }).then(res => {
+				this.categoryList = res.data.list;
 			});
 		}
 	},
