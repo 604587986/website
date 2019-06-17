@@ -8,6 +8,7 @@ const user = {
         user: null,
         site: null,
         group: null,
+        init:null
     },
     mutations: {
         SET_USER(state, user) {
@@ -19,6 +20,9 @@ const user = {
         SET_GROUP(state, group) {
             state.group = group
         },
+        SET_INIT(state, init) {
+            state.init = init
+        },
         // SET_STATUS(state, status) {
         //     state.status = status
         // }
@@ -26,6 +30,7 @@ const user = {
             state.user = null
             state.site = null
             state.group = null
+            state.init = null
             Cookie.remove('QH_STATUS')
             Cookie.remove('mock_user')
             Cookie.remove('mock_site')
@@ -84,6 +89,7 @@ const user = {
                         commit('SET_USER', res.data.user || null)
                         commit('SET_SITE', res.data.site || null)
                         commit('SET_GROUP', res.data.group || null)
+                        commit('SET_INIT', res.data.init || null)
 
                         resolve(res)
                     }

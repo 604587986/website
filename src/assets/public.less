@@ -1,25 +1,60 @@
-.ant-layout-header{
+body {
+    background: #f3f3f3;
+
+}
+
+.public-container {
+    padding: 0 30px;
+    margin: 0 auto;
+}
+.filter-form{
+    margin-bottom: 20px;
+    .ant-select{
+        width: 150px;
+        font-size: 12px;
+    }
+}
+
+//ant
+.ant-layout-header {
     background: #54c3f1;
     height: 40px;
     line-height: 40px;
-  }
-  .layout-content{
+    overflow: hidden;
+    padding: 0;
+}
+
+.layout-content {
     padding: 20px;
-  }
-  .ant-menu-vertical .ant-menu-item:after, .ant-menu-vertical-left .ant-menu-item:after, .ant-menu-vertical-right .ant-menu-item:after, .ant-menu-inline .ant-menu-item:after {
+}
+
+.ant-menu-vertical .ant-menu-item:after,
+.ant-menu-vertical-left .ant-menu-item:after,
+.ant-menu-vertical-right .ant-menu-item:after,
+.ant-menu-inline .ant-menu-item:after {
     left: 0;
     right: auto;
 }
-.ant-table{
-  font-size: 12px;
-  border-left: 0 !important;
-  border-right: 0 !important;
-  border-radius: 0;
-  .ant-table-thead > tr > th {
-    font-weight: bold;
-  }
-  .ant-table-body{
-    margin: 0 !important;
 
-  }
+.ant-table {
+    font-size: 12px;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0;
+
+    .ant-table-thead>tr>th {
+        font-weight: bold;
+    }
+
+    .ant-table-body {
+        margin: 0 !important;
+
+    }
+}
+.ant-btn-sm{
+    font-size: 12px;
+}
+.ant-form-item-label label{
+    color: #999;
+    font-size: 12px;
 }

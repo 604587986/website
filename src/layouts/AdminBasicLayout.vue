@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import theHeader from "./AdminHeader";
+import theHeader from "./Header";
 import theNav from "./AdminNav";
 import theFooter from "./Footer";
 import RouteView from "./RouteView";

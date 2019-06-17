@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
-import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox,Table,Tag,Collapse,Modal,Spin } from 'ant-design-vue';
+import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox,Table,Tag,Collapse,Modal,Spin,Radio,Select } from 'ant-design-vue';
 Vue.use(Button)
 Vue.use(Layout)
 Vue.use(Menu)
@@ -17,6 +17,8 @@ Vue.use(Tag)
 Vue.use(Collapse)
 Vue.use(Modal)
 Vue.use(Spin)
+Vue.use(Radio)
+Vue.use(Select)
 
 import "@/assets/iconfont/iconfont.css"; //阿里巴巴图标库
 import "@/assets/public.less"; 

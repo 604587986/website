@@ -24,6 +24,7 @@ request.interceptors.request.use((url, options) => {
     const mergeData = {
          mock_site, mock_user 
     }
+
     options.data = { ...options.data, ...mergeData }
 
     return (

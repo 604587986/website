@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="public-container">
         footer
     </div>
 </template>

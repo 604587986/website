@@ -1,5 +1,6 @@
 <template>
   <div>
+    <filter-form></filter-form>
     <a-table
       :columns="columns"
       :rowKey="record => record.id"
@@ -16,7 +17,7 @@
         <a-button size="small" type="primary" @click="switchUser(row.id)">切换</a-button>
       </span>
     </a-table>
-    <a-modal title="Basic Modal" :footer="null" destroyOnClose v-model="userPanelShow">
+    <a-modal title="管理员列表" :footer="null" destroyOnClose v-model="userPanelShow">
       <user-panel :siteId="currentSiteId"/>
     </a-modal>
   </div>
@@ -24,6 +25,7 @@
 <script>
 import { getSiteList } from "@/api/site";
 import userPanel from "./components/userPanel";
+import filterForm from "./components/filterForm";
 const columns = [
   {
     title: "id",
@@ -71,7 +73,8 @@ export default {
     };
   },
   components: {
-    userPanel
+    userPanel,
+    filterForm
   },
   mounted() {
     this.getSiteList();
@@ -93,16 +96,12 @@ export default {
       this.userPanelShow = true;
     },
     handleTableChange(pagination, filters, sorter) {
-      console.log(pagination);
       const pager = { ...this.pagination };
       pager.current = pagination.current;
       this.pagination = pager;
       this.getSiteList({
         size: pagination.pageSize,
         page: pagination.current,
-        sortField: sorter.field,
-        sortOrder: sorter.order,
-        ...filters
       });
     }
   }

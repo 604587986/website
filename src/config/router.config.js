@@ -171,14 +171,14 @@ export const userRouter = [{
                     path: '/article/list',
                     name: 'articleList',
                     component: () => import('@/views/user/article/list'),
-                    meta: { title: '文章列表', showInPanel: true },
+                    meta: { title: '文章列表', showInPanel: true,icon:'wenzhangliebiao' },
 
                 },
                 {
                     path: '/article/publish',
                     name: 'publishArticle',
                     component: () => import('@/views/user/article/publish'),
-                    meta: { title: '发文章', showInPanel: true },
+                    meta: { title: '发文章', showInPanel: true ,icon:'fawenzhang'},
                 },
                 {
                     path: '/article/edit',
@@ -199,7 +199,7 @@ export const userRouter = [{
                     path: '/tag/list',
                     name: 'tagList',
                     component: () => import('@/views/user/tag/list'),
-                    meta: { title: '标签列表', showInPanel: true },
+                    meta: { title: '标签列表', showInPanel: true,icon:'biaoqian' },
 
                 },
             ]
@@ -215,7 +215,7 @@ export const userRouter = [{
                     path: '/single-page/list',
                     name: 'singlePageList',
                     component: () => import('@/views/user/singlePage/list'),
-                    meta: { title: '单页列表', showInPanel: true },
+                    meta: { title: '单页列表', showInPanel: true ,icon:'danye' },
 
                 },
             ]
