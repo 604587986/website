@@ -22,7 +22,7 @@ request.interceptors.request.use((url, options) => {
     const mock_site = Cookie.get('mock_site')
 
     const mergeData = {
-         mock_site, mock_user 
+        mock_site, mock_user
     }
 
     options.data = { ...options.data, ...mergeData }
@@ -39,7 +39,7 @@ request.interceptors.request.use((url, options) => {
 // response拦截器, 处理response
 request.interceptors.response.use(async (response, options) => {
     const data = await response.clone().json();
-    if (data && data.code === 200) {
+    if (data && (data.code === 200 || data.code === 404)) {
         return response;
     } else if (data && data.code === 401) {
         alert('请登录')

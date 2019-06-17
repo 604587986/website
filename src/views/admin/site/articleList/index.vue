@@ -83,7 +83,10 @@ export default {
 	data() {
 		return {
 			data: [],
-			pagination: {},
+			pagination: {
+				current: 1,
+				pageSize:10
+			},
 			filterData: {},
 			loading: false,
 			columns
@@ -96,9 +99,13 @@ export default {
 		this.getArticleList();
 	},
 	methods: {
-		getArticleList(data = {}) {
+		getArticleList() {
 			this.loading = true;
-			const ajaxData = { ...data, ...this.pagination };
+			const ajaxData = {
+				...this.filterData,
+				page: this.pagination.current,
+				size: this.pagination.pageSize
+			};
 
 			getArticleList(ajaxData).then(res => {
 				const pagination = { ...this.pagination };
@@ -114,11 +121,12 @@ export default {
 			pager.current = pagination.current;
 			this.pagination = pager;
 
-			this.getArticleList(this.filterData);
+			this.getArticleList();
 		},
 		handleSearch(filterData) {
-			this.filterData = filterData;
-			this.getArticleList(filterData);
+			this.pagination.current = 1;
+			this.filterData = { ...filterData };
+			this.getArticleList();
 		}
 	}
 };
