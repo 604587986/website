@@ -236,6 +236,54 @@ export const userRouter = [{
                 },
             ]
         },
+        {
+            path: '/links',
+            name: 'links',
+            component: RouteView,
+            meta: { title: '友情链接管理', },
+            redirect: '/links/list',
+            children: [
+                {
+                    path: '/links/list',
+                    name: 'linksList',
+                    component: () => import('@/views/user/links/list'),
+                    meta: { title: '友情链接列表', showInPanel: true ,icon:'youqinglianjie' },
+
+                },
+            ]
+        },
+        {
+            path: '/carousel',
+            name: 'carousel',
+            component: RouteView,
+            meta: { title: '轮播图管理', },
+            redirect: '/carousel/list',
+            children: [
+                {
+                    path: '/carousel/list',
+                    name: 'carouselList',
+                    component: () => import('@/views/user/carousel/list'),
+                    meta: { title: '轮播图列表', showInPanel: true ,icon:'lunbo' },
+
+                },
+            ]
+        },
+        {
+            path: '/advertise',
+            name: 'advertise',
+            component: RouteView,
+            meta: { title: '广告管理', },
+            redirect: '/advertise/list',
+            children: [
+                {
+                    path: '/advertise/list',
+                    name: 'advertiseList',
+                    component: () => import('@/views/user/advertise/list'),
+                    meta: { title: '广告列表', showInPanel: true ,icon:'guanggao' },
+
+                },
+            ]
+        },
     ]
 
 }]

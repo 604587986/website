@@ -3,7 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
-import { Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, Cascader, Row, Col, message } from 'ant-design-vue';
+import {LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, Cascader, Row, Col, message,Popconfirm } from 'ant-design-vue';
+Vue.use(LocaleProvider)
 Vue.use(Button)
 Vue.use(Layout)
 Vue.use(Menu)
@@ -22,6 +23,7 @@ Vue.use(Select)
 Vue.use(Cascader)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Popconfirm)
 Vue.prototype.$message = message;
 
 
@@ -31,7 +33,8 @@ import "@/assets/public.less";
 import crumb from "@/components/Breadcrumb"
 Vue.component('wy-crumb', crumb)
 
-
+import mixin from "@/utils/mixin"
+Vue.mixin(mixin)
 
 import "@/permission"
 Vue.config.productionTip = false

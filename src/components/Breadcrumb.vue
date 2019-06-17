@@ -23,8 +23,6 @@ export default {
 			this.breadList = [];
 			this.name = this.$route.name;
 
-			console.log(this.$route.matched);
-
 			this.$route.matched.forEach(item => {
 				// item.name === "index"
 				// 	? (item.path = "/")

@@ -50,6 +50,8 @@ request.interceptors.response.use(async (response, options) => {
         notification.error({ message: data.message })
         return Promise.reject();
     }
+    return Promise.reject();
+
 });
 
 
