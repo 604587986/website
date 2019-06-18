@@ -4,6 +4,12 @@
       :is="$store.state.user.group.level === 0 ? 'filterForm':'filterFormForUser'"
       @search="handleSearch"
     ></component>
+    <PageHeadActionWrapper>
+      <template v-slot:right>
+        <a-button type="primary" size="small">回收站</a-button>
+        <a-button type="primary" size="small" @click="getArticleList">数据更新</a-button>
+      </template>
+    </PageHeadActionWrapper>
     <a-table
       :columns="columns"
       :rowKey="record => record.id"
@@ -56,7 +62,6 @@ import filterForm from "./components/filterForm";
 import filterFormForUser from "./components/filterFormForUser";
 
 import paginationMixin from "@/utils/paginationMixin";
-
 
 const columns = [
   {

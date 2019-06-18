@@ -1,6 +1,14 @@
 <template>
   <div>
     <filterForm @search="handleSearch"></filterForm>
+    <PageHeadActionWrapper>
+      <template v-slot:left>
+        <a-button type="primary" size="small">添加广告</a-button>
+      </template>
+      <template v-slot:right>
+        <a-button type="primary" size="small">广告分类</a-button>
+      </template>
+    </PageHeadActionWrapper>
     <a-table
       :columns="columns"
       :rowKey="record => record.id"
@@ -34,7 +42,6 @@ import { getList } from "@/api/advertise";
 import filterForm from "./components/filterForm";
 
 import paginationMixin from "@/utils/paginationMixin";
-
 
 const columns = [
   {
@@ -79,7 +86,7 @@ const columns = [
 ];
 export default {
   mixins: [paginationMixin],
-  
+
   data() {
     return {
       data: [],

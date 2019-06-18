@@ -1,6 +1,12 @@
 <template>
   <div>
     <filterForm @search="handleSearch"></filterForm>
+    <PageHeadActionWrapper>
+      <template v-slot:left>
+        <a-button type="primary" size="small">添加顶级分类</a-button>
+        <a-button type="primary" size="small">批量导入</a-button>
+      </template>
+    </PageHeadActionWrapper>
     <a-table
       :columns="columns"
       :rowKey="record => record.id"
@@ -39,7 +45,7 @@ const columns = [
   {
     title: "ID",
     dataIndex: "id",
-    width:100
+    width: 100
   },
   {
     title: "标题（子类数量）",
@@ -107,7 +113,7 @@ export default {
         if (Object.keys(this.filterData).length) {
           ajaxData = {
             ...this.filterData,
-            page:0
+            page: 0
           };
         } else {
           ajaxData = {

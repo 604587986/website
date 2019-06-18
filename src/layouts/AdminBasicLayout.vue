@@ -6,7 +6,7 @@
       </a-layout-header>
       <the-nav></the-nav>
       <a-layout class="layout-content">
-        <side-menu mode="inline" :menus="menus" :collapsed="false" :collapsible="true"></side-menu>
+        <side-menu mode="inline" :menus="menus" :collapsed="collapsed" :collapsible="true"></side-menu>
         <a-layout style="padding: 0 24px">
           <wy-crumb></wy-crumb>
           <a-layout-content
@@ -32,11 +32,13 @@ import SideMenu from "@/components/menu/SideMenu";
 
 export default {
   data() {
-    return {
-      collapsed: false
-    };
+    return {};
   },
   computed: {
+    collapsed() {
+      return !this.$store.state.app.sidebar.opened;
+    },
+
     menus() {
       const menus = this.$store.getters.addRouters.find(
         route => route.path === "/"
@@ -54,5 +56,4 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-
 </style>

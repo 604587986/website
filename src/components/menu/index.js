@@ -1,5 +1,6 @@
 import Menu from 'ant-design-vue/es/menu'
 import Icon from 'ant-design-vue/es/icon'
+import { spawn } from 'child_process';
 
 const { Item, SubMenu } = Menu
 
@@ -57,15 +58,26 @@ export default {
     }
   },
   methods: {
+    // renderIcon: function (h, icon) {
+    //   return icon === 'none' || icon === undefined ? null
+    //     : h('i', { class: `menu-icon iconfont icon-${icon}` })
+    // },
     renderIcon: function (h, icon) {
-      return icon === 'none' || icon === undefined ? null
-        : h('i', { class: `menu-icon iconfont icon-${icon}` })
+      if (icon === 'none' || icon === undefined) {
+        return null
+      }
+      return (
+        <span class={'anticon'}>
+          <i class={`iconfont icon-${icon}`}></i>
+        </span>
+      )
+
     },
     go(menu) {
       // if (menu.name === this.$route.name) {
       //   return { to: { path: '/redirect' + this.$route.fullPath } }
       // } else {
-        return { to: { name: menu.name } }
+      return { to: { name: menu.name } }
       // }
     },
     renderMenuItem: function (h, menu, pIndex, index) {

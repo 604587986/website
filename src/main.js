@@ -36,6 +36,9 @@ import "@/assets/public.less";
 import crumb from "@/components/Breadcrumb"
 Vue.component('wy-crumb', crumb)
 
+import PageHeadActionWrapper from "@/components/PageHeadActionWrapper"
+Vue.component('PageHeadActionWrapper', PageHeadActionWrapper)
+
 import mixin from "@/utils/mixin"
 Vue.mixin(mixin)
 

@@ -1,6 +1,14 @@
 <template>
   <div>
     <filterForm @search="handleSearch"></filterForm>
+    <PageHeadActionWrapper>
+      <template v-slot:left>
+        <a-button type="primary" size="small">添加友情链接</a-button>
+      </template>
+      <template v-slot:right>
+        <a-button type="primary" size="small">友情链接分类</a-button>
+      </template>
+    </PageHeadActionWrapper>
     <a-table
       :columns="columns"
       :rowKey="record => record.id"
