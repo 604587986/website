@@ -115,14 +115,12 @@
 				</a-col>
 			</a-row>
 
-			<a-form-item>
-				<a-form-item label="文章内容">
-					
-				</a-form-item>
+			<a-form-item label="文章内容">
+				<editor v-model="preCreateForm.content"></editor>
 			</a-form-item>
 
-			<a-form-item>
-				<a-button html-type="submit">提交</a-button>
+			<a-form-item v-bind="formItemLayoutShort">
+				<a-button type="primary" html-type="submit">提交</a-button>
 			</a-form-item>
 		</a-form>
 	</div>
@@ -133,6 +131,7 @@ import { getTagList } from "@/api/tag";
 import { create } from "@/api/article";
 import Moment from "moment";
 
+import editor from "@/components/Tinymce";
 
 export default {
 	data() {
@@ -160,6 +159,7 @@ export default {
 		}
 	},
 	components: {
+		editor
 	},
 	mounted() {
 		this.getCategoryList();
@@ -174,7 +174,39 @@ export default {
 			this.preCreate().then(res => {
 				this.preCreateForm = { ...res.data.data };
 
-				console.log(this.form.getFieldsValue());
+				let data = { ...this.form.getFieldsValue() };
+
+				if (data.pin_date) {
+					data.pin_date = data.pin_date.format("YYYY-MM-DD hh:mm:ss");
+				}
+				if (data.release_time) {
+					data.release_time = data.release_time.format(
+						"YYYY-MM-DD hh:mm:ss"
+					);
+				}
+				if (data.category_id && data.category_id.length) {
+					data.category_id =
+						data.category_id[data.category_id.length - 1];
+				} else {
+					delete data.category_id;
+				}
+
+				if (data.quote_id && data.quote_id.length) {
+					data.quote_id = data.quote_id.join(",");
+				} else {
+					delete data.quote_id;
+				}
+				if (data.tag_id && data.tag_id.length) {
+					data.tag_id = data.tag_id.join(",");
+				} else {
+					delete data.tag_id;
+				}
+
+				data.id = this.preCreateForm.id
+
+				data.content = this.preCreateForm.content
+
+				console.log(data);
 			});
 		},
 		//获取分类列表
@@ -214,6 +246,23 @@ export default {
 			});
 		}
 	}
+	// beforeRouteLeave(to, from, next) {
+	// 	if (!this.isSubmit) {
+	// 		this.$confirm("是否放弃保存并离开此页面", "提示", {
+	// 			confirmButtonText: "确定",
+	// 			cancelButtonText: "取消",
+	// 			type: "warning"
+	// 		})
+	// 			.then(() => {
+	// 				next();
+	// 			})
+	// 			.catch(() => {
+	// 				next(false);
+	// 			});
+	// 	} else {
+	// 		next();
+	// 	}
+	// }
 };
 </script>
 <style lang="less">
