@@ -168,11 +168,7 @@ export default {
     },
     preview(row) {
       var URL = window.document.domain;
-      const protocol = window.location.protocol;
       window.open(
-        protocol +
-          "//" +
-          URL +
           "/api/article/preview" +
           "?id=" +
           row.id +
