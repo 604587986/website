@@ -62,7 +62,7 @@ export const adminRouter = [{
                 {
                     path: '/attachment/list',
                     name: 'attachmentList',
-                    component: () => import('@/views/admin/attachment/attachmentList'),
+                    component: () => import('@/views/admin/attachment/list'),
                     meta: { title: '附件列表' }
                 }
             ]
@@ -125,7 +125,7 @@ export const adminRouter = [{
                 {
                     path: '/authority/user-list',
                     name: 'userList',
-                    component: () => import('@/views/admin/authority/userList'),
+                    component: () => import('@/views/admin/authority/user/list'),
                     meta: { title: '用户列表' }
                 },
                 {
@@ -137,10 +137,16 @@ export const adminRouter = [{
                 {
                     path: '/authority/group-list',
                     name: 'groupList',
-                    component: () => import('@/views/admin/authority/groupList'),
+                    component: () => import('@/views/admin/authority/group/list'),
                     meta: { title: '用户组列表' }
                 },
             ]
+        },
+        {
+            path: '/monitor',
+            name: 'monitor',
+            component: () => import('@/views/admin/monitor'),
+            meta: { title: '发布监控', icon: 'liuyan' }
         },
     ]
 },
@@ -170,15 +176,15 @@ export const userRouter = [{
                 {
                     path: '/article/list',
                     name: 'articleList',
-                    component: () => import('@/views/user/article/list'),
-                    meta: { title: '文章列表', showInPanel: true,icon:'wenzhangliebiao' },
+                    component: () => import('@/views/user/article/list.js'),
+                    meta: { title: '文章列表', showInPanel: true, icon: 'wenzhangliebiao' },
 
                 },
                 {
                     path: '/article/publish',
                     name: 'publishArticle',
                     component: () => import('@/views/user/article/publish'),
-                    meta: { title: '发文章', showInPanel: true ,icon:'fawenzhang'},
+                    meta: { title: '发文章', showInPanel: true, icon: 'fawenzhang' },
                 },
                 {
                     path: '/article/edit',
@@ -199,7 +205,7 @@ export const userRouter = [{
                     path: '/tag/list',
                     name: 'tagList',
                     component: () => import('@/views/user/tag/list'),
-                    meta: { title: '标签列表', showInPanel: true,icon:'biaoqian' },
+                    meta: { title: '标签列表', showInPanel: true, icon: 'biaoqian' },
 
                 },
             ]
@@ -215,7 +221,7 @@ export const userRouter = [{
                     path: '/single-page/list',
                     name: 'singlePageList',
                     component: () => import('@/views/user/singlePage/list'),
-                    meta: { title: '单页列表', showInPanel: true ,icon:'danye' },
+                    meta: { title: '单页列表', showInPanel: true, icon: 'danye' },
 
                 },
             ]
@@ -231,7 +237,7 @@ export const userRouter = [{
                     path: '/category/list',
                     name: 'categoryList',
                     component: () => import('@/views/user/category/list'),
-                    meta: { title: '分类列表', showInPanel: true ,icon:'lanmuliebiao' },
+                    meta: { title: '分类列表', showInPanel: true, icon: 'lanmuliebiao' },
 
                 },
             ]
@@ -247,7 +253,7 @@ export const userRouter = [{
                     path: '/links/list',
                     name: 'linksList',
                     component: () => import('@/views/user/links/list'),
-                    meta: { title: '友情链接列表', showInPanel: true ,icon:'youqinglianjie' },
+                    meta: { title: '友情链接列表', showInPanel: true, icon: 'youqinglianjie' },
 
                 },
             ]
@@ -263,7 +269,7 @@ export const userRouter = [{
                     path: '/carousel/list',
                     name: 'carouselList',
                     component: () => import('@/views/user/carousel/list'),
-                    meta: { title: '轮播图列表', showInPanel: true ,icon:'lunbo' },
+                    meta: { title: '轮播图列表', showInPanel: true, icon: 'lunbo' },
 
                 },
             ]
@@ -279,10 +285,16 @@ export const userRouter = [{
                     path: '/advertise/list',
                     name: 'advertiseList',
                     component: () => import('@/views/user/advertise/list'),
-                    meta: { title: '广告列表', showInPanel: true ,icon:'guanggao' },
+                    meta: { title: '广告列表', showInPanel: true, icon: 'guanggao' },
 
                 },
             ]
+        },
+        {
+            path: '/monitor',
+            name: 'monitor',
+            component: () => import('@/views/user/monitor'),
+            meta: { title: '发布监控', showInPanel: true, icon: 'liuyan' }
         },
     ]
 

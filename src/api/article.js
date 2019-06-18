@@ -6,3 +6,9 @@ export function getArticleList(data) {
         data: data
     })
 }
+export function create(data) {
+    return request('/article/create', {
+        method: 'post',
+        data: data
+    })
+}

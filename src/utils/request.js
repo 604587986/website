@@ -43,9 +43,8 @@ request.interceptors.response.use(async (response, options) => {
         return response;
     } else if (data && data.code === 401) {
         alert('请登录')
-        // location.reload()
         store.commit('LOGOUT')
-        return Promise.reject();
+        location.reload()
     } else {
         notification.error({ message: data.message })
         return Promise.reject();
