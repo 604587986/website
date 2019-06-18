@@ -27,6 +27,9 @@ import { getGroupList, getPrivilegeList } from "@/api/auth";
 
 import filterForm from "./components/filterForm";
 
+import paginationMixin from "@/utils/paginationMixin";
+
+
 const columns = [
 	{
 		title: "ID",
@@ -48,16 +51,12 @@ const columns = [
 	}
 ];
 export default {
+  mixins: [paginationMixin],
+
 	data() {
 		return {
 			data: [],
-			pagination: {
-				current: 1,
-				pageSize: 10,
-				showTotal: total => {
-					return `共${total}条`;
-				}
-			},
+
 			filterData: {},
 			loading: false,
 			columns,
@@ -99,6 +98,7 @@ export default {
 		handleTableChange(pagination, filters, sorter) {
 			const pager = { ...this.pagination };
 			pager.current = pagination.current;
+			pager.pageSize = pagination.pageSize;
 			this.pagination = pager;
 
 			this.getGroupList();

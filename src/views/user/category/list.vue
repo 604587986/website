@@ -38,7 +38,8 @@ import { getCategoryList } from "@/api/category";
 const columns = [
   {
     title: "ID",
-    dataIndex: "id"
+    dataIndex: "id",
+    width:100
   },
   {
     title: "标题（子类数量）",
@@ -99,10 +100,21 @@ export default {
     getCategoryList() {
       this.loading = true;
       let ajaxData;
-      if (Object.keys(this.filterData).length) {
-        ajaxData = {
-          ...this.filterData
-        };
+      if (this.filterData) {
+        for (let i in this.filterData) {
+          !this.filterData[i] && delete this.filterData[i];
+        }
+        if (Object.keys(this.filterData).length) {
+          ajaxData = {
+            ...this.filterData,
+            page:0
+          };
+        } else {
+          ajaxData = {
+            ...this.filterData,
+            tree: true
+          };
+        }
       } else {
         ajaxData = {
           ...this.filterData,
