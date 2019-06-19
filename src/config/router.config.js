@@ -44,6 +44,12 @@ export const adminRouter = [{
                     meta: { title: '文章列表' }
                 },
                 {
+                    path: '/site/article-recycle-bin',
+                    name: 'articleRecycleBin',
+                    component: () => import('@/views/admin/site/articleRecycleBin'),
+                    meta: { title: '文章回收站', hidden: true }
+                },
+                {
                     path: '/site/backup',
                     name: 'backup',
                     component: () => import('@/views/admin/site/backup'),
@@ -119,8 +125,14 @@ export const adminRouter = [{
                 {
                     path: '/authority/add-user',
                     name: 'addUser',
-                    component: () => import('@/views/admin/authority/addUser'),
+                    component: () => import('@/views/admin/authority/user/add'),
                     meta: { title: '添加用户' }
+                },
+                {
+                    path: '/authority/edit-user/:id',
+                    name: 'editUser',
+                    component: () => import('@/views/admin/authority/user/edit'),
+                    meta: { title: '编辑用户', hidden: true }
                 },
                 {
                     path: '/authority/user-list',
@@ -131,8 +143,14 @@ export const adminRouter = [{
                 {
                     path: '/authority/add-group',
                     name: 'addGroup',
-                    component: () => import('@/views/admin/authority/addGroup'),
+                    component: () => import('@/views/admin/authority/group/add'),
                     meta: { title: '添加用户组' }
+                },
+                {
+                    path: '/authority/edit-group/:id',
+                    name: 'editGroup',
+                    component: () => import('@/views/admin/authority/group/edit'),
+                    meta: { title: '编辑用户组', hidden: true }
                 },
                 {
                     path: '/authority/group-list',
@@ -146,7 +164,7 @@ export const adminRouter = [{
             path: '/monitor',
             name: 'monitor',
             component: () => import('@/views/admin/monitor'),
-            meta: { title: '发布监控', icon: 'liuyan' }
+            meta: { title: '发布监控', icon: 'liuyan', hidden: true }
         },
     ]
 },

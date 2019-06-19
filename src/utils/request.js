@@ -1,57 +1,51 @@
-import { extend } from 'umi-request';
-import store from '@/store'
 import { notification } from 'ant-design-vue'
 import Cookie from "js-cookie"
 
-const request = extend({
-    maxCache: 10, // 最大缓存个数, 超出后会自动清掉按时间最开始的一个.
-    prefix: '/api', // prefix
-    suffix: '', // suffix
-    credentials: 'include',
-    errorHandler: (error) => {
-        // 集中处理错误
-    },
-    headers: {
-    },
-    params: {
-    }
-});
+import axios from "axios"
+const request = axios.create({
+    baseURL: '/api',
+    withCredentials: true,
 
-request.interceptors.request.use((url, options) => {
-    const mock_user = Cookie.get('mock_user')
-    const mock_site = Cookie.get('mock_site')
+})
 
-    const mergeData = {
-        mock_site, mock_user
-    }
 
-    options.data = { ...options.data, ...mergeData }
+request.interceptors.request.use(
+    config => {
+        const mock_user = Cookie.get('mock_user')
+        const mock_site = Cookie.get('mock_site')
 
-    return (
-        {
-            options: options
+        const mergeData = {
+            mock_site, mock_user
         }
-    )
-});
+
+        config.data = { ...config.data, ...mergeData }
+
+        return config
+    },
+    error => {
+        return Promise.reject(error)
+    }
+);
 
 
 
 // response拦截器, 处理response
-request.interceptors.response.use(async (response, options) => {
-    const data = await response.clone().json();
-    if (data && (data.code === 200 || data.code === 404)) {
-        return response;
-    } else if (data && data.code === 401) {
-        alert('请登录')
-        store.commit('LOGOUT')
-        location.reload()
-    } else {
-        notification.error({ message: data.message })
-        return Promise.reject();
-    }
-    return Promise.reject();
+request.interceptors.response.use(
+    response => {
+        if (response && response.data && response.data.code === 200) {
+            return response.data
+        } else if (response && response.data && response.data.code === 404) {
+            return response.data
+        } else {
+            notification.error({ message: response.data.message })
+            return Promise.reject(response.data.message)
+        }
 
-});
+    },
+    error => {
+        notification.error({ message: error.response.data })
+    }
+);
 
 
 

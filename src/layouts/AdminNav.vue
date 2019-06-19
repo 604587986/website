@@ -7,7 +7,7 @@
 			<div class="nav-item-wrapper">
 				<router-link to="/workbench" class="nav-item">工作台</router-link>
 				<router-link to="/site" class="nav-item">站点管理</router-link>
-				<router-link to="/template" class="nav-item">发布监控</router-link>
+				<router-link to="/monitor" class="nav-item">发布监控</router-link>
 			</div>
 		</div>
 	</div>

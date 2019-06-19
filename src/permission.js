@@ -20,16 +20,11 @@ router.beforeEach((to, from, next) => {
             next({ path: '/' })
         } else {
             if (!store.getters.status) {
-                console.log(111)
                 store.dispatch('getUserInfo').then(res => {
-                    console.log(store.getters.addRouters)
                     router.addRoutes(store.getters.addRouters)
-                    console.log('add success')
-                    // next('/login')
                     next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
                 })
             } else {
-                console.log(222)
                 next()
             }
         }

@@ -9,6 +9,9 @@ export default {
             } else {
                 return ''
             }
+        },
+        mixin_jump:function(route){
+            this.$router.push(route)
         }
     }
 }

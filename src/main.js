@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
-import { LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, TreeSelect, Cascader, Row, Col, message, Popconfirm, DatePicker, Switch } from 'ant-design-vue';
+import { LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, TreeSelect, Cascader, Row, Col, message, Popconfirm, DatePicker, Switch, Skeleton } from 'ant-design-vue';
 Vue.use(LocaleProvider)
 Vue.use(Button)
 Vue.use(Layout)
@@ -27,11 +27,14 @@ Vue.use(Col)
 Vue.use(Popconfirm)
 Vue.use(DatePicker)
 Vue.use(Switch)
+Vue.use(Skeleton)
 Vue.prototype.$message = message;
+Vue.prototype.$confirm = Modal.confirm;
 
 
 import "@/assets/iconfont/iconfont.css"; //阿里巴巴图标库
-import "@/assets/public.less";
+import "@/assets/styles/normalize.css";
+import "@/assets/styles/public.less";
 
 import crumb from "@/components/Breadcrumb"
 Vue.component('wy-crumb', crumb)

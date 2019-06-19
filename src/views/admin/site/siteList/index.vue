@@ -3,7 +3,7 @@
     <filter-form @search="handleSearch"></filter-form>
     <PageHeadActionWrapper>
       <template v-slot:left>
-        <a-button type="primary" size="small">添加站点</a-button>
+        <a-button type="primary" size="small" @click="mixin_jump('/site/add-site')">添加站点</a-button>
       </template>
       <template v-slot:right>
         <a-button type="primary" size="small" @click="getSiteList">数据更新</a-button>

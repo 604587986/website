@@ -6,7 +6,6 @@
     ></component>
     <PageHeadActionWrapper>
       <template v-slot:right>
-        <a-button type="primary" size="small" @click="mixin_jump('/site/article-recycle-bin')">回收站</a-button>
         <a-button type="primary" size="small" @click="getArticleList">数据更新</a-button>
       </template>
     </PageHeadActionWrapper>
@@ -49,8 +48,9 @@
         >
           <a-button size="small">发布</a-button>
         </a-popconfirm>
-        <a-button size="small" @click="go(row)">前往</a-button>
         <a-button size="small" @click="preview(row)">预览</a-button>
+        <a-button size="small">恢复</a-button>
+        <a-button size="small">彻底删除</a-button>
       </span>
     </a-table>
   </div>
@@ -110,6 +110,7 @@ const columns = [
   },
   {
     title: "操作",
+    width:200,
     scopedSlots: { customRender: "action" }
   }
 ];
@@ -138,7 +139,8 @@ export default {
       const ajaxData = {
         ...this.filterData,
         page: this.pagination.current,
-        size: this.pagination.pageSize
+        size: this.pagination.pageSize,
+        state:-1
       };
 
       getArticleList(ajaxData).then(res => {
