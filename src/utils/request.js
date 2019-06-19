@@ -1,5 +1,6 @@
 import { notification } from 'ant-design-vue'
 import Cookie from "js-cookie"
+import store from "@/store"
 
 import axios from "axios"
 const request = axios.create({
@@ -36,7 +37,11 @@ request.interceptors.response.use(
             return response.data
         } else if (response && response.data && response.data.code === 404) {
             return response.data
-        } else {
+        } else if (response && response.data && response.data.code === 401) {
+            store.commit('LOGOUT')
+            location.reload()
+        }
+        else {
             notification.error({ message: response.data.message })
             return Promise.reject(response.data.message)
         }
