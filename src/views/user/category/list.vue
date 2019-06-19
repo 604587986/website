@@ -38,7 +38,7 @@ const columns = [
 	{
 		title: "ID",
 		dataIndex: "id",
-		width: 100
+		width: 120
 	},
 	{
 		title: "标题（子类数量）",
