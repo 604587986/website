@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
-import { LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, TreeSelect, Cascader, Row, Col, message, Popconfirm, DatePicker, Switch, Skeleton } from 'ant-design-vue';
+import { LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, TreeSelect, Cascader, Row, Col, message, Popconfirm, DatePicker, Switch, Skeleton,InputNumber } from 'ant-design-vue';
 Vue.use(LocaleProvider)
 Vue.use(Button)
 Vue.use(Layout)
@@ -28,6 +28,7 @@ Vue.use(Popconfirm)
 Vue.use(DatePicker)
 Vue.use(Switch)
 Vue.use(Skeleton)
+Vue.use(InputNumber)
 Vue.prototype.$message = message;
 Vue.prototype.$confirm = Modal.confirm;
 

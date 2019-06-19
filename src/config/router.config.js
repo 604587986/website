@@ -28,13 +28,19 @@ export const adminRouter = [{
                 {
                     path: '/site/add-site',
                     name: 'addSite',
-                    component: () => import('@/views/admin/site/addSite'),
+                    component: () => import('@/views/admin/site/siteList/add'),
                     meta: { title: '添加站点' }
+                },
+                {
+                    path: '/site/edit-site/:id',
+                    name: 'editSite',
+                    component: () => import('@/views/admin/site/siteList/edit'),
+                    meta: { title: '编辑站点', hidden: true }
                 },
                 {
                     path: '/site/site-list',
                     name: 'siteList',
-                    component: () => import('@/views/admin/site/siteList'),
+                    component: () => import('@/views/admin/site/siteList/list'),
                     meta: { title: '站点列表' }
                 },
                 {
@@ -210,6 +216,12 @@ export const userRouter = [{
                     component: () => import('@/views/user/article/edit'),
                     meta: { title: '编辑文章' }
                 },
+                {
+                    path: '/article/recycle-bin',
+                    name: 'articleRecycleBin',
+                    component: () => import('@/views/user/article/articleRecycleBin'),
+                    meta: { title: '文章回收站' }
+                },
             ]
         },
         {
@@ -316,4 +328,7 @@ export const userRouter = [{
         },
     ]
 
+},
+{
+    path: '*', redirect: '/404', hidden: true
 }]

@@ -6,3 +6,28 @@ export function getSiteList(data) {
         data: data
     })
 }
+export function createSite(data) {
+    return request('/site/create', {
+        method: 'post',
+        data: data
+    })
+
+}
+export function editSite(data) {
+    return request('/site/info', {
+        method: 'post',
+        data: data
+    })
+}
+export function saveSite(data) {
+    return request('/site/save', {
+        method: 'post',
+        data: data
+    })
+}
+export function deleteSite(data) {
+    return request('/site/delete', {
+        method: 'post',
+        data: data
+    })
+}
