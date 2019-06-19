@@ -272,7 +272,7 @@ export const userRouter = [{
             path: '/category',
             name: 'category',
             component: RouteView,
-            meta: { title: '分类管理', },
+            meta: { title: '分类管理'  },
             redirect: '/category/list',
             children: [
                 {
@@ -280,6 +280,20 @@ export const userRouter = [{
                     name: 'categoryList',
                     component: () => import('@/views/user/category/list'),
                     meta: { title: '分类列表', showInPanel: true, icon: 'lanmuliebiao' },
+
+                },
+                {
+                    path: '/category/add',
+                    name: 'addCategory',
+                    component: () => import('@/views/user/category/add'),
+                    meta: { title: '添加分类' },
+
+                },
+                {
+                    path: '/category/edit/:id',
+                    name: 'editCategory',
+                    component: () => import('@/views/user/category/edit'),
+                    meta: { title: '编辑分类' },
 
                 },
             ]
