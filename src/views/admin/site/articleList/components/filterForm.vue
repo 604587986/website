@@ -114,8 +114,6 @@
 <script>
 import { getSiteList } from "@/api/site";
 import { getCategoryList } from "@/api/category";
-import { nextTick } from "q";
-
 export default {
   data() {
     this.form = this.$form.createForm(this);

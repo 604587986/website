@@ -4,12 +4,12 @@
 			<a-form :form="form" class="login-form" layout="horizontal" @submit="handleSubmit">
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="站点名称" v-bind="formItemLayoutShort">
+						<a-form-item label="站点名称" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['title']" placeholder="站点名称"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="所属部门" v-bind="formItemLayoutShort">
+						<a-form-item label="所属部门" v-bind="mixinFormItemLayoutShort">
 							<a-select size="small" v-decorator="['department_id']" placeholder="所属部门" allowClear>
 								<a-select-option v-for="item in departmentList" :value="item.id" :key="item.id">{{item.title}}</a-select-option>
 							</a-select>
@@ -19,24 +19,24 @@
 
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="编码" v-bind="formItemLayoutShort">
+						<a-form-item label="编码" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['code']" placeholder="编码"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="别名" v-bind="formItemLayoutShort">
+						<a-form-item label="别名" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['alias']" placeholder="别名"/>
 						</a-form-item>
 					</a-col>
 				</a-row>
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="域名" v-bind="formItemLayoutShort">
+						<a-form-item label="域名" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['domain']" placeholder="域名"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="启用HTTPS" v-bind="formItemLayoutShort">
+						<a-form-item label="启用HTTPS" v-bind="mixinFormItemLayoutShort">
 							<a-radio-group v-decorator="['domain_https']">
 								<a-radio :value="1">启用</a-radio>
 								<a-radio :value="0">不启用</a-radio>
@@ -47,7 +47,7 @@
 
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="跨站点引用" v-bind="formItemLayoutShort">
+						<a-form-item label="跨站点引用" v-bind="mixinFormItemLayoutShort">
 							<a-radio-group v-model="is_cross">
 								<a-radio :value="true">启用</a-radio>
 								<a-radio :value="false">不启用</a-radio>
@@ -55,7 +55,7 @@
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="选择引用站点" v-bind="formItemLayoutShort" v-if="is_cross">
+						<a-form-item label="选择引用站点" v-bind="mixinFormItemLayoutShort" v-if="is_cross">
 							<a-select size="small" v-decorator="['cross_site']" placeholder="选择引用站点" allowClear>
 								<a-select-option v-for="item in siteList" :value="item.id" :key="item.id" :disabled="item.id == $route.params.id">{{item.title}}</a-select-option>
 							</a-select>
@@ -78,19 +78,19 @@
 
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="微信二维码" v-bind="formItemLayoutShort">
+						<a-form-item label="微信二维码" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['qr_wechat']" placeholder="微信二维码"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="微博二维码" v-bind="formItemLayoutShort">
+						<a-form-item label="微博二维码" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['qr_weibo']" placeholder="微博二维码"/>
 						</a-form-item>
 					</a-col>
 				</a-row>
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="网站状态" v-bind="formItemLayoutShort">
+						<a-form-item label="网站状态" v-bind="mixinFormItemLayoutShort">
 							<a-radio-group v-decorator="['state']">
 								<a-radio :value="1">正常</a-radio>
 								<a-radio :value="0">建设中</a-radio>
@@ -99,7 +99,7 @@
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="排序" v-bind="formItemLayoutShort">
+						<a-form-item label="排序" v-bind="mixinFormItemLayoutShort">
 							<a-input-number size="small" v-decorator="['sort']" placeholder="排序"/>
 						</a-form-item>
 					</a-col>
@@ -109,7 +109,7 @@
 					<a-textarea size="small" v-decorator="['comment']" placeholder="备注"/>
 				</a-form-item>
 
-				<a-form-item v-bind="formItemLayoutShort">
+				<a-form-item v-bind="mixinFormItemLayoutShort">
 					<a-button type="primary" html-type="submit">提交</a-button>
 				</a-form-item>
 			</a-form>
@@ -135,10 +135,7 @@ export default {
 	data() {
 		this.form = this.$form.createForm(this);
 		return {
-			formItemLayoutShort: {
-				labelCol: { lg: { span: 4 }, xs: { span: 2 } },
-				wrapperCol: { lg: { span: 10 }, xs: { span: 22 } }
-			},
+
 			groupList: [], //用户组列表
 			departmentList: [], //用户组列表
 			siteList: [], //站点列表
@@ -176,7 +173,7 @@ export default {
 				this.siteList = res.data.list;
 			});
 		},
-		//编辑模式下获取用户组信息
+		//编辑模式下获取
 		getInfo() {
 			this.pageLoading = true;
 
@@ -225,7 +222,7 @@ export default {
 				});
 			});
 		},
-		//编辑模式下保存用户组信息
+		//编辑模式下保存
 		save() {
 			let ajaxData = {
 				...this.form.getFieldsValue(),
@@ -240,10 +237,10 @@ export default {
 					this.$message.success("保存成功");
 				})
 				.then(() => {
-					this.$router.push("/authority/site-list");
+					this.$router.push("/site/site-list");
 				});
 		},
-		//新增模式下创建用户组
+		//新增模式下创建
 		create() {
 			let ajaxData = { ...this.form.getFieldsValue() };
 
@@ -256,7 +253,7 @@ export default {
 					this.$message.success("添加成功");
 				})
 				.then(() => {
-					this.$router.push("/authority/site-list");
+					this.$router.push("/site/site-list");
 				});
 		}
 	}

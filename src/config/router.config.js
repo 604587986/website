@@ -183,7 +183,8 @@ export const userRouter = [{
     name: 'workbench',
     component: UserPanelLayout,
     meta: { title: '工作台', icon: 'gongzuotai' },
-}, {
+},
+{
     path: '/',
     name: 'index',
     component: UserBasicLayout,
@@ -236,7 +237,18 @@ export const userRouter = [{
                     name: 'tagList',
                     component: () => import('@/views/user/tag/list'),
                     meta: { title: '标签列表', showInPanel: true, icon: 'biaoqian' },
-
+                },
+                {
+                    path: '/tag/add',
+                    name: 'addTag',
+                    component: () => import('@/views/user/tag/add'),
+                    meta: { title: '添加标签', icon: 'biaoqian' },
+                },
+                {
+                    path: '/tag/edit/:id',
+                    name: 'editTag',
+                    component: () => import('@/views/user/tag/edit'),
+                    meta: { title: '编辑标签', icon: 'biaoqian' },
                 },
             ]
         },

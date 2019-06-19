@@ -3,7 +3,7 @@
 		<a-form :form="form" class="login-form" layout="horizontal" @submit="handleSubmit">
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="分类" v-bind="formItemLayoutShort">
+					<a-form-item label="分类" v-bind="mixinFormItemLayoutShort">
 						<a-cascader
 							size="small"
 							v-decorator="['category_id']"
@@ -15,7 +15,7 @@
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="引用" v-bind="formItemLayoutShort">
+					<a-form-item label="引用" v-bind="mixinFormItemLayoutShort">
 						<a-tree-select
 							v-decorator="['quote_id']"
 							:treeData="categoryTreeSelect"
@@ -34,12 +34,12 @@
 
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="标题" v-bind="formItemLayoutShort">
+					<a-form-item label="标题" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['title']" placeholder="标题"/>
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="作者" v-bind="formItemLayoutShort">
+					<a-form-item label="作者" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['author']" placeholder="作者"/>
 					</a-form-item>
 				</a-col>
@@ -51,12 +51,12 @@
 
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="摄影" v-bind="formItemLayoutShort">
+					<a-form-item label="摄影" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['photo']" placeholder="摄影"/>
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="编辑" v-bind="formItemLayoutShort">
+					<a-form-item label="编辑" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['editor']" placeholder="编辑"/>
 					</a-form-item>
 				</a-col>
@@ -64,12 +64,12 @@
 
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="来源" v-bind="formItemLayoutShort">
+					<a-form-item label="来源" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['source']" placeholder="来源"/>
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="字段1" v-bind="formItemLayoutShort">
+					<a-form-item label="字段1" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['field_one']" placeholder="字段1"/>
 					</a-form-item>
 				</a-col>
@@ -77,12 +77,12 @@
 
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="字段2" v-bind="formItemLayoutShort">
+					<a-form-item label="字段2" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['field_two']" placeholder="字段2"/>
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="字段3" v-bind="formItemLayoutShort">
+					<a-form-item label="字段3" v-bind="mixinFormItemLayoutShort">
 						<a-input size="small" v-decorator="['field_three']" placeholder="字段3"/>
 					</a-form-item>
 				</a-col>
@@ -90,26 +90,26 @@
 
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="文章发布日期" v-bind="formItemLayoutShort">
+					<a-form-item label="文章发布日期" v-bind="mixinFormItemLayoutShort">
 						<a-date-picker v-decorator="['release_time']"/>
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="置顶截止日期" v-bind="formItemLayoutShort">
+					<a-form-item label="置顶截止日期" v-bind="mixinFormItemLayoutShort">
 						<a-date-picker v-decorator="['pin_date']"/>
 					</a-form-item>
 				</a-col>
 			</a-row>
 			<a-row>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="文章标签" v-bind="formItemLayoutShort">
+					<a-form-item label="文章标签" v-bind="mixinFormItemLayoutShort">
 						<a-select mode="multiple" :loading="tag.loading" v-decorator="['tag_id']" allowClear placeholder="请选择标签">
 							<a-select-option v-for="i in tag.list" :key="i.id" :value="String(i.id)">{{i.title}}</a-select-option>
 						</a-select>
 					</a-form-item>
 				</a-col>
 				<a-col :lg="{span:12}" :xs="{span:24}">
-					<a-form-item label="是否推荐" v-bind="formItemLayoutShort">
+					<a-form-item label="是否推荐" v-bind="mixinFormItemLayoutShort">
 						<a-switch v-decorator="['recommend']" defaultChecked/>
 					</a-form-item>
 				</a-col>
@@ -119,7 +119,7 @@
 				<editor v-model="preCreateForm.content"></editor>
 			</a-form-item>
 
-			<a-form-item v-bind="formItemLayoutShort">
+			<a-form-item v-bind="mixinFormItemLayoutShort">
 				<a-button type="primary" html-type="submit">提交</a-button>
 			</a-form-item>
 		</a-form>
@@ -138,10 +138,7 @@ export default {
 		this.form = this.$form.createForm(this);
 		return {
 			aaa: "",
-			formItemLayoutShort: {
-				labelCol: { lg: { span: 4 }, xs: { span: 2 } },
-				wrapperCol: { lg: { span: 10 }, xs: { span: 22 } }
-			},
+
 			category: {
 				list: [],
 				loading: false

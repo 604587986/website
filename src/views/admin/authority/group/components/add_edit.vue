@@ -4,12 +4,12 @@
 			<a-form :form="form" class="login-form" layout="horizontal" @submit="handleSubmit">
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="用户组名" v-bind="formItemLayoutShort">
+						<a-form-item label="用户组名" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['title']" placeholder="用户组名"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="级别" v-bind="formItemLayoutShort">
+						<a-form-item label="级别" v-bind="mixinFormItemLayoutShort">
 							<a-select size="small" v-decorator="['level']" placeholder="级别" allowClear>
 								<a-select-option v-for="item in levelList" :value="item.id" :key="item.id">{{item.title}}</a-select-option>
 							</a-select>
@@ -24,7 +24,7 @@
 					<a-checkbox-group :options="privilegeList" v-decorator="['privilege']" @change="onChange"></a-checkbox-group>
 				</a-form-item>
 
-				<a-form-item v-bind="formItemLayoutShort">
+				<a-form-item v-bind="mixinFormItemLayoutShort">
 					<a-button type="primary" html-type="submit">提交</a-button>
 				</a-form-item>
 			</a-form>
@@ -51,10 +51,7 @@ export default {
 	data() {
 		this.form = this.$form.createForm(this);
 		return {
-			formItemLayoutShort: {
-				labelCol: { lg: { span: 4 }, xs: { span: 2 } },
-				wrapperCol: { lg: { span: 10 }, xs: { span: 22 } }
-			},
+
 			indeterminate: false,
 			checkAll: false,
 			privilegeList: [], //权限列表

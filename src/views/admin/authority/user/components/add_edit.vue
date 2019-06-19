@@ -4,12 +4,12 @@
 			<a-form :form="form" class="login-form" layout="horizontal" @submit="handleSubmit">
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="账号" v-bind="formItemLayoutShort">
+						<a-form-item label="账号" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['account']" placeholder="账号"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="昵称" v-bind="formItemLayoutShort">
+						<a-form-item label="昵称" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['nickname']" placeholder="昵称"/>
 						</a-form-item>
 					</a-col>
@@ -17,26 +17,26 @@
 
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="登录密码" v-bind="formItemLayoutShort">
+						<a-form-item label="登录密码" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" type="password" v-decorator="['passwd']" placeholder="登录密码"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="确认密码" v-bind="formItemLayoutShort">
+						<a-form-item label="确认密码" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" type="password" v-decorator="['passwd_confirm']" placeholder="确认密码"/>
 						</a-form-item>
 					</a-col>
 				</a-row>
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="用户组" v-bind="formItemLayoutShort">
+						<a-form-item label="用户组" v-bind="mixinFormItemLayoutShort">
 							<a-select size="small" v-decorator="['group_id']" placeholder="用户组" allowClear>
 								<a-select-option v-for="item in groupList" :value="item.id" :key="item.id">{{item.title}}</a-select-option>
 							</a-select>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="所属部门" v-bind="formItemLayoutShort">
+						<a-form-item label="所属部门" v-bind="mixinFormItemLayoutShort">
 							<a-select size="small" v-decorator="['department_id']" placeholder="所属部门" allowClear>
 								<a-select-option v-for="item in departmentList" :value="item.id" :key="item.id">{{item.title}}</a-select-option>
 							</a-select>
@@ -51,18 +51,18 @@
 
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="邮箱" v-bind="formItemLayoutShort">
+						<a-form-item label="邮箱" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['mail']" placeholder="邮箱"/>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
-						<a-form-item label="手机号" v-bind="formItemLayoutShort">
+						<a-form-item label="手机号" v-bind="mixinFormItemLayoutShort">
 							<a-input size="small" v-decorator="['mobile']" placeholder="手机号"/>
 						</a-form-item>
 					</a-col>
 				</a-row>
 
-				<a-form-item v-bind="formItemLayoutShort">
+				<a-form-item v-bind="mixinFormItemLayoutShort">
 					<a-button type="primary" html-type="submit">提交</a-button>
 				</a-form-item>
 			</a-form>
@@ -75,7 +75,6 @@ import { createUser, editUser, saveUser, getGroupList } from "@/api/auth";
 import { getDepartmentList } from "@/api/department";
 
 import { getSiteList } from "@/api/site";
-import { nextTick } from "q";
 export default {
 	props: {
 		mode: {
@@ -89,10 +88,7 @@ export default {
 	data() {
 		this.form = this.$form.createForm(this);
 		return {
-			formItemLayoutShort: {
-				labelCol: { lg: { span: 4 }, xs: { span: 2 } },
-				wrapperCol: { lg: { span: 10 }, xs: { span: 22 } }
-			},
+
 			groupList: [], //用户组列表
 			departmentList: [], //用户组列表
 			siteList: [], //站点列表
@@ -136,7 +132,7 @@ export default {
 				this.siteList = res.data.list;
 			});
 		},
-		//编辑模式下获取用户组信息
+		//编辑模式下获取
 		getInfo() {
 			this.pageLoading = true;
 
@@ -167,7 +163,7 @@ export default {
 				});
 			});
 		},
-		//编辑模式下保存用户组信息
+		//编辑模式下保存
 		save() {
 			let ajaxData = {
 				...this.form.getFieldsValue(),
@@ -185,7 +181,7 @@ export default {
 					this.$router.push("/authority/user-list");
 				});
 		},
-		//新增模式下创建用户组
+		//新增模式下创建
 		create() {
 			let ajaxData = { ...this.form.getFieldsValue() };
 
