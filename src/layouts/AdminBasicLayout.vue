@@ -5,9 +5,9 @@
 				<the-header></the-header>
 			</a-layout-header>
 			<the-nav></the-nav>
-			<a-layout class="layout-content">
+			<a-layout class="layout-content" :style="{padding:needPadding?'20px':0}">
 				<side-menu mode="inline" :menus="menuData" :collapsed="collapsed" :collapsible="true"></side-menu>
-				<a-layout style="padding: 0 24px">
+				<a-layout :style="{paddingLeft:needPadding?'20px':0}">
 					<a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
 						<wy-crumb></wy-crumb>
 						<route-view></route-view>
@@ -41,6 +41,12 @@ export default {
 	computed: {
 		collapsed() {
 			return !this.$store.state.app.sidebar.opened;
+		},
+		needPadding() {
+			if (this.$store.state.app.device === "desktop") {
+				return true;
+			}
+			return false;
 		}
 	},
 	methods: {

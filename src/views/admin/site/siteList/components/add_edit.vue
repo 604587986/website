@@ -79,12 +79,12 @@
 				<a-row>
 					<a-col :lg="{span:12}" :xs="{span:24}">
 						<a-form-item label="微信二维码" v-bind="mixinFormItemLayoutShort">
-							<a-input size="small" v-decorator="['qr_wechat']" placeholder="微信二维码"/>
+							<filePicker :allowType="['image']"></filePicker>
 						</a-form-item>
 					</a-col>
 					<a-col :lg="{span:12}" :xs="{span:24}">
 						<a-form-item label="微博二维码" v-bind="mixinFormItemLayoutShort">
-							<a-input size="small" v-decorator="['qr_weibo']" placeholder="微博二维码"/>
+							<filePicker :allowType="['image']"></filePicker>
 						</a-form-item>
 					</a-col>
 				</a-row>
@@ -122,6 +122,8 @@ import { createSite, editSite, saveSite } from "@/api/site";
 import { getDepartmentList } from "@/api/department";
 
 import { getSiteList } from "@/api/site";
+
+import filePicker from "@/components/filePicker";
 export default {
 	props: {
 		mode: {
@@ -132,10 +134,12 @@ export default {
 			}
 		}
 	},
+	components: {
+		filePicker
+	},
 	data() {
 		this.form = this.$form.createForm(this);
 		return {
-
 			groupList: [], //用户组列表
 			departmentList: [], //用户组列表
 			siteList: [], //站点列表
@@ -211,7 +215,7 @@ export default {
 						qr_weibo: this.editForm.qr_weibo,
 						state: this.editForm.state,
 						sort: this.editForm.sort,
-						comment: this.editForm.comment,
+						comment: this.editForm.comment
 					});
 					//判断是否跨站点引用，再进行赋值操作
 					if (this.editForm.cross_site) {

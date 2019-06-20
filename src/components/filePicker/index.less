@@ -1,0 +1,146 @@
+.file-picker {
+    .ant-list-item {
+        .ant-card-meta-title {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .ant-card-meta-description {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    .selected-icon {
+        display: none;
+    }
+    .selected {
+        .ant-list-item {
+            position: relative;
+            .ant-card-body {
+                background: #42b983;
+                transition: all 0.3s;
+                .ant-card-meta-title {
+                    color: #fff;
+                }
+                .ant-card-meta-description {
+                    color: #fff;
+                }
+            }
+            .selected-icon {
+                display: block;
+                color: #fff;
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+.file-picker-btn-wrap {
+    .preview-img-wrap {
+        margin-top: 10px;
+        .title {
+            font-weight: bold;
+            line-height: 1.5;
+        }
+        .preview-img {
+            width: 200px;
+        }
+        .mask-wrap {
+            position: relative;
+            display: inline-block;
+            .img-mask {
+                display: none;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: rgba(1, 1, 1, 0.5);
+                i {
+                    color: #fff;
+                    font-size: 20px;
+                    padding: 0 10px;
+                    cursor: pointer;
+                    &:hover {
+                        color: #42b983;
+                        &.anticon-delete{
+                            color:#f5222d;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                .img-mask {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    .preview-doc-wrap {
+        margin-top: 10px;
+        .title {
+            font-weight: bold;
+        }
+        i{
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .anticon-delete {
+            &:hover {
+                color: #f5222d;
+            }
+        }
+        .anticon-edit {
+            &:hover {
+                color: #42b983;
+            }
+        }
+    }
+    .preview-video-wrap {
+        margin-top: 10px;
+        .title {
+            font-weight: bold;
+        }
+        video {
+            width: 300px;
+        }
+        .mask-wrap {
+            position: relative;
+            display: inline-block;
+            .icon-wrap {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+                padding: 0 10px;
+                text-align: right;
+                background: rgba(1, 1, 1, 0.5);
+                i {
+                    cursor: pointer;
+                    color: #fff;
+                    margin-left: 10px;
+                    &:hover {
+                        color: #f5222d;
+                    }
+                }
+            }
+            &:hover {
+                .icon-wrap {
+                    display: block;
+                }
+            }
+        }
+    }
+}

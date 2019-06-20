@@ -7,7 +7,8 @@
 				<a-button type="primary" size="small">批量导入</a-button>
 			</template>
 		</PageHeadActionWrapper>
-		<a-table :columns="columns" :rowKey="record => record.id" :dataSource="categoryList" :pagination="false" :loading="loading" size="small">
+		<a-table :columns="columns" :rowKey="record => record.id"
+ :dataSource="categoryList" :pagination="false" :loading="loading" size="small">
 			<span slot="this_title" slot-scope="text,row">
 				<div v-if="row">
 					<a-tag v-if="row.image_id !== 0" color="orange">图</a-tag>

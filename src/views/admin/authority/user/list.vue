@@ -12,6 +12,7 @@
 		<a-table
 			:columns="columns"
 			:rowKey="record => record.id"
+
 			:dataSource="data"
 			:pagination="pagination"
 			@change="handleTableChange"

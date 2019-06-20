@@ -116,7 +116,7 @@
 			</a-row>
 
 			<a-form-item label="文章内容">
-				<editor v-model="preCreateForm.content"></editor>
+				<editor v-decorator="['content']"></editor>
 			</a-form-item>
 
 			<a-form-item v-bind="mixinFormItemLayoutShort">
@@ -199,9 +199,9 @@ export default {
 					delete data.tag_id;
 				}
 
-				data.id = this.preCreateForm.id
+				data.id = this.preCreateForm.id;
 
-				data.content = this.preCreateForm.content
+				data.content = this.preCreateForm.content;
 
 				console.log(data);
 			});
