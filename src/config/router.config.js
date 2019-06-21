@@ -347,6 +347,12 @@ export const userRouter = [{
             ]
         },
         {
+            path: '/databoard',
+            name: 'databoard',
+            component: () => import('@/views/user/databoard'),
+            meta: { title: '数据看板', showInPanel: true, icon: 'shujukanban', roles: [1, 2, 3,4, 5] }
+        },
+        {
             path: '/web-build',
             name: 'webBuild',
             component: () => import('@/views/user/webBuild'),

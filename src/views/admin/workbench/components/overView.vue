@@ -1,6 +1,6 @@
 <template>
 	<div class="data-view">
-		<div class="top">
+		<div class="top" v-if="$store.getters.group === 0">
 			<div class="quick-nav-item" v-for="item in navList" :key="item.title">
 				<div class="link-box">
 					<p class="value">{{item.val}}</p>
