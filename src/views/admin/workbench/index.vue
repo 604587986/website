@@ -26,20 +26,18 @@ import visitRank from "./components/visitRank";
 import articleNumRank from "./components/articleNumRank";
 import articleViewRank from "./components/articleViewRank";
 
+
 export default {
 	data() {
-		return {
-
-		};
+		return {};
 	},
 	components: {
 		quickNav,
 		overView,
 		visitRank,
 		articleNumRank,
-		articleViewRank
-	},
-
+		articleViewRank,
+	}
 };
 </script>
 <style lang="less" scoped>

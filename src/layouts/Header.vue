@@ -12,9 +12,6 @@
 					</a-select>
 				</span>
 			</div>
-			<div class="is-mock">
-				<a-tag color="#f56c6c" @click="backToAdmin" v-if="isMock">返回系统管理员界面</a-tag>
-			</div>
 
 			<div class="actions">
 				<span>修改密码</span>
@@ -27,16 +24,23 @@
 				<span>{{$store.state.user.user.nickname}}</span>
 			</div>
 		</div>
+		<div class="fix-mock-user"  @click="backToAdmin" v-if="isMock" title="点击返回系统管理员界面">		
+			<wySpin style="width:80px" text="模拟用户中"></wySpin>
+		</div>
 	</div>
 </template>
 <script>
 import Cookie from "js-cookie";
+import wySpin from "@/components/wySpin";
 
 export default {
 	data() {
 		return {
 			isMock: Cookie.get("mock_user") ? true : false
 		};
+	},
+	components: {
+		wySpin
 	},
 	computed: {
 		managedSiteList() {
@@ -62,7 +66,7 @@ export default {
 		},
 		handleSiteChange(val) {
 			Cookie.set("mock_site", val, { expires: 1 });
-			location.reload()
+			location.reload();
 		}
 	}
 };

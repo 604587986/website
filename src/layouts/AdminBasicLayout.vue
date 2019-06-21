@@ -28,6 +28,7 @@ import RouteView from "./RouteView";
 
 import SideMenu from "@/components/menu/SideMenu";
 
+
 export default {
 	data() {
 		const menuData = this.getMenuData(
@@ -70,7 +71,8 @@ export default {
 		theNav,
 		theFooter,
 		SideMenu,
-		RouteView
+		RouteView,
+
 	}
 };
 </script>
