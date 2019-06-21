@@ -6,7 +6,7 @@
 				<a-tab-pane tab="数据概况" key="1">
 					<overView></overView>
 				</a-tab-pane>
-				<a-tab-pane tab="访问量排行" key="2" forceRender>
+				<a-tab-pane tab="访问量排行" key="2">
 					<visitRank></visitRank>
 				</a-tab-pane>
 				<a-tab-pane tab="文章数量排行" key="3">

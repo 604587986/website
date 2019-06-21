@@ -6,6 +6,11 @@
 				<span v-if="$store.state.user.site" class="site-link">
 					<a :href="'//'+$store.state.user.site.domain" target="_blank">前台首页</a>
 				</span>
+				<span style="margin-left:30px" v-if="managedSiteList.length>1">
+					<a-select style="width: 120px;font-size:12px" @change="handleSiteChange" size="small" placeholder="切换站点">
+						<a-select-option :value="site.id" v-for="site in managedSiteList" :key="site.id">{{site.title}}</a-select-option>
+					</a-select>
+				</span>
 			</div>
 			<div class="is-mock">
 				<a-tag color="#f56c6c" @click="backToAdmin" v-if="isMock">返回系统管理员界面</a-tag>
@@ -33,6 +38,11 @@ export default {
 			isMock: Cookie.get("mock_user") ? true : false
 		};
 	},
+	computed: {
+		managedSiteList() {
+			return this.$store.state.user.siteList;
+		}
+	},
 	methods: {
 		logout() {
 			const {
@@ -49,6 +59,10 @@ export default {
 			setTimeout(() => {
 				location.href = "/";
 			}, 300);
+		},
+		handleSiteChange(val) {
+			Cookie.set("mock_site", val, { expires: 1 });
+			location.reload()
 		}
 	}
 };

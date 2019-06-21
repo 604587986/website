@@ -347,6 +347,12 @@ export const userRouter = [{
             ]
         },
         {
+            path: '/web-build',
+            name: 'webBuild',
+            component: () => import('@/views/user/webBuild'),
+            meta: { title: '网页生成', showInPanel: true, icon: 'danye' }
+        },
+        {
             path: '/monitor',
             name: 'monitor',
             component: () => import('@/views/user/monitor'),

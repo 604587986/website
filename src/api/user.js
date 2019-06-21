@@ -21,6 +21,11 @@ export function getUserInfo() {
         method: 'post'
     })
 }
+export function getManagedSite() {
+    return request('/user/managedSite', {
+        method: 'post'
+    })
+}
 export function logout() {
     return request('/login/logout', {
         method: 'post'
