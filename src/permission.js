@@ -21,8 +21,10 @@ router.beforeEach((to, from, next) => {
         } else {
             if (!store.getters.status) {
                 store.dispatch('getUserInfo').then(res => {
-                    router.addRoutes(store.getters.addRouters)
-                    next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+                    store.dispatch('GenerateRoutes', store.getters.group).then(() => {
+                        router.addRoutes(store.getters.addRouters)
+                        next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+                    })
                 })
             } else {
                 next()

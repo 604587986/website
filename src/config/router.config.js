@@ -202,14 +202,14 @@ export const userRouter = [{
                     path: '/article/list',
                     name: 'articleList',
                     component: () => import('@/views/user/article/list.js'),
-                    meta: { title: '文章列表', showInPanel: true, icon: 'wenzhangliebiao' },
+                    meta: { title: '文章列表', showInPanel: true, icon: 'wenzhangliebiao', roles: [1, 2, 3, 4, 5] },
 
                 },
                 {
                     path: '/article/publish',
                     name: 'publishArticle',
                     component: () => import('@/views/user/article/publish'),
-                    meta: { title: '发文章', showInPanel: true, icon: 'fawenzhang' },
+                    meta: { title: '发文章', showInPanel: true, icon: 'fawenzhang', roles: [1, 2, 3, 4, 5] },
                 },
                 {
                     path: '/article/edit',
@@ -236,7 +236,7 @@ export const userRouter = [{
                     path: '/tag/list',
                     name: 'tagList',
                     component: () => import('@/views/user/tag/list'),
-                    meta: { title: '标签列表', showInPanel: true, icon: 'biaoqian' },
+                    meta: { title: '标签列表', showInPanel: true, icon: 'biaoqian', roles: [1, 2, 3, 5] },
                 },
                 {
                     path: '/tag/add',
@@ -263,7 +263,7 @@ export const userRouter = [{
                     path: '/single-page/list',
                     name: 'singlePageList',
                     component: () => import('@/views/user/singlePage/list'),
-                    meta: { title: '单页列表', showInPanel: true, icon: 'danye' },
+                    meta: { title: '单页列表', showInPanel: true, icon: 'danye', roles: [1, 2, 3, 5] },
 
                 },
             ]
@@ -272,14 +272,14 @@ export const userRouter = [{
             path: '/category',
             name: 'category',
             component: RouteView,
-            meta: { title: '分类管理'  },
+            meta: { title: '分类管理' },
             redirect: '/category/list',
             children: [
                 {
                     path: '/category/list',
                     name: 'categoryList',
                     component: () => import('@/views/user/category/list'),
-                    meta: { title: '分类列表', showInPanel: true, icon: 'lanmuliebiao' },
+                    meta: { title: '分类列表', showInPanel: true, icon: 'lanmuliebiao', roles: [1, 2, 3, 5] },
 
                 },
                 {
@@ -309,7 +309,7 @@ export const userRouter = [{
                     path: '/links/list',
                     name: 'linksList',
                     component: () => import('@/views/user/links/list'),
-                    meta: { title: '友情链接列表', showInPanel: true, icon: 'youqinglianjie' },
+                    meta: { title: '友情链接列表', showInPanel: true, icon: 'youqinglianjie', roles: [1, 2, 3,  5] },
 
                 },
             ]
@@ -325,7 +325,7 @@ export const userRouter = [{
                     path: '/carousel/list',
                     name: 'carouselList',
                     component: () => import('@/views/user/carousel/list'),
-                    meta: { title: '轮播图列表', showInPanel: true, icon: 'lunbo' },
+                    meta: { title: '轮播图列表', showInPanel: true, icon: 'lunbo', roles: [1, 2, 3,  5] },
 
                 },
             ]
@@ -341,7 +341,7 @@ export const userRouter = [{
                     path: '/advertise/list',
                     name: 'advertiseList',
                     component: () => import('@/views/user/advertise/list'),
-                    meta: { title: '广告列表', showInPanel: true, icon: 'guanggao' },
+                    meta: { title: '广告列表', showInPanel: true, icon: 'guanggao', roles: [1, 2, 3, 5] },
 
                 },
             ]
@@ -350,13 +350,13 @@ export const userRouter = [{
             path: '/web-build',
             name: 'webBuild',
             component: () => import('@/views/user/webBuild'),
-            meta: { title: '网页生成', showInPanel: true, icon: 'danye' }
+            meta: { title: '网页生成', showInPanel: true, icon: 'danye', roles: [1, 2, 3, 5] }
         },
         {
             path: '/monitor',
             name: 'monitor',
             component: () => import('@/views/user/monitor'),
-            meta: { title: '发布监控', showInPanel: true, icon: 'liuyan' }
+            meta: { title: '发布监控', showInPanel: true, icon: 'liuyan', roles: [1, 2, 3, 4, 5] }
         },
     ]
 

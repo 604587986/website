@@ -38,23 +38,17 @@ const user = {
         }
     },
     getters: {
-        addRouters(state) {
-            if (state.group) {
-                if (state.group.level === 0) {
-                    return adminRouter
-                } else {
-                    return userRouter
-                }
-            } else {
-                return []
-            }
-
-        },
         status(state) {
             if (state.user) {
                 return true
             }
             return false;
+        },
+        group(state) {
+            if (state.group) {
+                return state.group.level
+            }
+            return '';
         }
 
     },
@@ -62,13 +56,13 @@ const user = {
         login({ commit }, data) {
             return new Promise((resolve, reject) => {
                 login(data).then(res => {
-                    if(res.data.site && res.data.site.length){
-                        commit('SET_SITE_LIST',res.data.site)
+                    if (res.data.site && res.data.site.length) {
+                        commit('SET_SITE_LIST', res.data.site)
                     }
                     //将登录逻辑交于组件操作
                     resolve(res)
 
-                }).catch(err=>{
+                }).catch(err => {
                     reject()
                 })
             })

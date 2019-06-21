@@ -6,6 +6,8 @@ import permission from './modules/permission'
 import user from './modules/user'
 import monitor from './modules/monitor'
 
+import getters from './getters'
+
 
 Vue.use(Vuex)
 
@@ -16,6 +18,7 @@ export default new Vuex.Store({
         user,
         monitor
     },
+    getters,
     state: {
 
     },
