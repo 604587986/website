@@ -9,6 +9,9 @@
 		</PageHeadActionWrapper>
 		<a-table :columns="columns" :rowKey="record => record.site_title" :dataSource="data" :pagination="false" :loading="loading" size="small">
 			<span slot="index" slot-scope="text,row,index">{{index+1}}</span>
+			<span slot="site_title" slot-scope="text,row,index">
+				<a :href="'//'+row.site_link" class="rank-link">{{row.site_title}}</a>
+			</span>
 		</a-table>
 	</div>
 </template>
@@ -22,11 +25,12 @@ const columns = [
 	},
 	{
 		title: "网站名称",
-		dataIndex: "site_title"
+		dataIndex: "site_title",
+		scopedSlots: { customRender: "site_title" }
 	},
 	{
 		title: "本月访问量",
-		dataIndex: "month_views"
+		dataIndex: "month_views",
 	},
 	{
 		title: "今日访问量",

@@ -21,3 +21,17 @@ export function buildIndex(data) {
         data: data
     })
 }
+//生成分类
+export function buildCategory(data) {
+    return request('/web_build/buildCategory', {
+        method: 'post',
+        data: data
+    })
+}
+//生成单页
+export function buildPage(data) {
+    return request('/web_build/buildPage', {
+        method: 'post',
+        data: data
+    })
+}

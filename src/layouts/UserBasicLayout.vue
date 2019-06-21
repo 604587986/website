@@ -3,7 +3,7 @@
 		<a-layout-header>
 			<the-header></the-header>
 		</a-layout-header>
-		<div class="public-container">
+		<div :class="{'public-container':needPadding}">
 			<div class="card">
 				<user-menu></user-menu>
 				<wy-crumb style="margin-top:40px"></wy-crumb>
@@ -21,6 +21,14 @@ import UserMenu from "./UserMenu";
 export default {
 	data() {
 		return {};
+	},
+	computed: {
+		needPadding() {
+			if (this.$store.state.app.device === "desktop") {
+				return true;
+			}
+			return false;
+		}
 	},
 	components: {
 		theHeader,

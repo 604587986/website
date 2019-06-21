@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<a-button type="primary" size="small" @click="getDir">刷新数据</a-button>
+			<a-button type="primary" size="small" @click="getDir(true)">刷新数据</a-button>
 		</div>
 		<div style="margin-top:20px">
 			<span class="this-lable">选择首页模板：</span>
@@ -30,20 +30,29 @@ export default {
 		this.getDir();
 	},
 	methods: {
-		getDir() {
+		getDir(needMessage = false) {
 			this.loading = true;
 			dir().then(res => {
 				this.dirList = res.data;
 				this.loading = false;
+
+				if (needMessage) {
+					this.$message.success("数据获取成功");
+				}
 			});
 		},
 		buildIndex() {
+			if(!this.value){
+				return
+			}
+
+
 			this.btnLoading = true;
 			buildIndex({ index_template: this.value })
 				.then(res => {
 					this.btnLoading = false;
-					
-					this.$message.success('首页生成成功')
+
+					this.$message.success("首页生成成功");
 				})
 				.catch(err => {
 					this.btnLoading = false;

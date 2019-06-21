@@ -12,6 +12,9 @@
 		</PageHeadActionWrapper>
 		<a-table :columns="columns" :rowKey="record => record.site_title" :dataSource="data" :pagination="false" :loading="loading" size="small">
 			<span slot="index" slot-scope="text,row,index">{{index+1}}</span>
+			<span slot="site_title" slot-scope="text,row,index">
+				<a :href="'//'+row.site_link" class="rank-link">{{row.site_title}}</a>
+			</span>
 		</a-table>
 	</div>
 </template>
@@ -19,13 +22,15 @@
 import { articleCountRanking } from "@/api/workbench";
 
 const columns = [
-    {
-        title:"排行",
-		scopedSlots: { customRender: "index" }        
-    },
+	{
+		title: "排行",
+		scopedSlots: { customRender: "index" }
+	},
 	{
 		title: "网站名称",
-		dataIndex: "site_title"
+		dataIndex: "site_title",
+		scopedSlots: { customRender: "site_title" }
+
 	},
 	{
 		title: "今日发布",

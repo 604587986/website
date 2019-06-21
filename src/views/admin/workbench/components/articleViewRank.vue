@@ -8,23 +8,25 @@
 			</template>
 		</PageHeadActionWrapper>
 		<a-table :columns="columns" :rowKey="record => record.id" :dataSource="data" :pagination="false" :loading="loading" size="small">
-            <span slot="index" slot-scope="text,row,index">
-                {{index+1}}
-            </span>
-        </a-table>
+			<span slot="index" slot-scope="text,row,index">{{index+1}}</span>
+			<span slot="this_title" slot-scope="text,row,index">
+				<a :href="row.article_link" class="rank-link">{{row.title}}</a>
+			</span>
+		</a-table>
 	</div>
 </template>
 <script>
 import { articleViewsRanking } from "@/api/workbench";
 
 const columns = [
-    {
-        title:"排行",
-		scopedSlots: { customRender: "index" }        
-    },
+	{
+		title: "排行",
+		scopedSlots: { customRender: "index" }
+	},
 	{
 		title: "标题",
-		dataIndex: "title"
+		dataIndex: "title",
+		scopedSlots: { customRender: "this_title" }
 	},
 	{
 		title: "浏览次数",
@@ -57,7 +59,6 @@ export default {
 	},
 	methods: {
 		getList() {
-            
 			this.loading = true;
 
 			articleViewsRanking().then(res => {
