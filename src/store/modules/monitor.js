@@ -27,9 +27,6 @@ const monitor = {
             state.loading = loading
         }
     },
-    getters: {
-
-    },
     actions: {
         getMonitorList({ commit, state }, data) {
             commit('SET_LOADING', true)

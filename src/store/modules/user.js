@@ -37,21 +37,6 @@ const user = {
             Cookie.remove('mock_site')
         }
     },
-    getters: {
-        status(state) {
-            if (state.user) {
-                return true
-            }
-            return false;
-        },
-        group(state) {
-            if (state.group) {
-                return state.group.level
-            }
-            return '';
-        }
-
-    },
     actions: {
         login({ commit }, data) {
             return new Promise((resolve, reject) => {
