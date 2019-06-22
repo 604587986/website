@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
-import { LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, TreeSelect, Cascader, Row, Col, message,notification, Popconfirm, DatePicker, Switch, Skeleton,InputNumber,Pagination,Tabs,List,Card } from 'ant-design-vue';
+import { LocaleProvider, Button, Layout, Menu, Icon, Breadcrumb, Form, Input, Checkbox, Table, Tag, Collapse, Modal, Spin, Radio, Select, TreeSelect, Cascader, Row, Col, message, notification, Popconfirm, DatePicker, Switch, Skeleton, InputNumber, Pagination, Tabs, List, Card } from 'ant-design-vue';
 Vue.use(LocaleProvider)
 Vue.use(Button)
 Vue.use(Layout)
@@ -37,19 +37,21 @@ Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
 Vue.prototype.$confirm = Modal.confirm;
 
-
+//全局样式
 import "@/assets/iconfont/iconfont.css"; //阿里巴巴图标库
 import "@/assets/styles/normalize.css";
 import "@/assets/styles/public.less";
-
+//全局组件
 import crumb from "@/components/Breadcrumb"
 Vue.component('wy-crumb', crumb)
-
 import PageHeadActionWrapper from "@/components/PageHeadActionWrapper"
 Vue.component('PageHeadActionWrapper', PageHeadActionWrapper)
 
+
+//全局mixin
 import mixin from "@/utils/mixin"
 Vue.mixin(mixin)
+
 
 import "@/permission"
 Vue.config.productionTip = false

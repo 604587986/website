@@ -44,9 +44,7 @@ export default {
         return {
             modalVisible: false,
             listLoading: false,
-            selectedFile: {
-                id: '',
-            },
+            selectedFile: {},
             confirmFile: null,
             dataSource: [
                 // {
@@ -111,6 +109,8 @@ export default {
         //选择文件，此时并不派发通知事件
         handleSelectFile(item) {
             this.selectedFile = item;
+            //单击即确定
+            this.handleConfirmFile()
         },
         //双击，执行确认文件方法
         handleDoubleClick(item) {
@@ -123,7 +123,7 @@ export default {
             this.closeModal()
         },
         //上传组件点了选择按钮后
-        handleSelectUploadFile(file){
+        handleSelectUploadFile(file) {
             this.selectedFile = file;
             this.confirmFile = file
             this.$emit('confirm-file', this.confirmFile)
@@ -204,6 +204,8 @@ export default {
                             })
                         }
                     </a-radio-group>
+
+
                     <a-list {...listProps} class="file-picker">
                         {this.renderPagination()}
                     </a-list>
@@ -232,24 +234,22 @@ export default {
                 },
             }
             return (
-                <div>
-                    <a-tabs {...tabsProps}>
-                        <a-tab-pane key="1">
-                            <span slot="tab">
-                                <a-icon type="folder" />
-                                选择文件
+                <a-tabs {...tabsProps}>
+                    <a-tab-pane key="1">
+                        <span slot="tab">
+                            <a-icon type="folder" />
+                            选择文件
                             </span>
-                            {this.renderFileList()}
-                        </a-tab-pane>
-                        <a-tab-pane key="2">
-                            <span slot="tab">
-                                <a-icon type="upload" />
-                                上传文件
+                        {this.renderFileList()}
+                    </a-tab-pane>
+                    <a-tab-pane key="2">
+                        <span slot="tab">
+                            <a-icon type="upload" />
+                            上传文件
                             </span>
-                            <upload type={this.fileType} onUploadedAndSelected={this.handleSelectUploadFile}   onComplete={(data) => { console.log(data) }}></upload>
-                        </a-tab-pane>
-                    </a-tabs>
-                </div>
+                        <upload type={this.fileType} onUploadedAndSelected={this.handleSelectUploadFile} onComplete={(data) => { console.log(data) }}></upload>
+                    </a-tab-pane>
+                </a-tabs>
             )
         },
         // 渲染模态框
@@ -260,6 +260,7 @@ export default {
                     visible: modalVisible,
                     title: modalTitle,
                     width: '64%',
+                    footer: null
                 },
                 on: {
                     cancel: this.closeModal,
@@ -342,96 +343,7 @@ export default {
     watch: {
         default: function (val) {
             this.defaultValue = val
-        },
-        fileType: {
-            handler: function (val) {
-                // if (val == 1) {
-                //     this.dataSource = [
-                //         {
-                //             id: 1,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是一张图片',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 2,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是第二张图片',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 3,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是第三张图片。',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 4,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是一张图片',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 5,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是一张图片',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 6,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是一张图片',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 7,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是一张图片',
-                //             type: 1
-                //         },
-                //         {
-                //             id: 8,
-                //             title: 'Title 1',
-                //             url: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                //             desc: '我是一张图片',
-                //             type: 1
-                //         },
-
-                //     ]
-                // }
-                // if (val == 2) {
-                //     this.dataSource = [
-                //         {
-                //             id: 10,
-                //             title: '文档 1',
-                //             url: 'https://hengdian.q-huan.link/attachment/20181025/3ef2e879cbe3dbe242f8c63afd0dd90a.xls',
-                //             desc: '我是一个文档',
-                //             type: 2
-                //         },
-                //     ]
-                // }
-                // if (val == 3) {
-                //     this.dataSource = [
-                //         {
-                //             id: 20,
-                //             title: '视频 1',
-                //             url: 'http://www.w3school.com.cn/i/movie.ogg',
-                //             desc: '我是一个视频',
-                //             type: 3
-                //         },
-                //     ]
-                // }
-
-            },
-            immediate: true
-        },
+        }
 
     },
     render(h) {

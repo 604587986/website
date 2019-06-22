@@ -10,7 +10,7 @@ const getters = {
   },
   //用户所在权限组（与后端一致）
   group: (state) => {
-    if (state.group) {
+    if (state.user.group) {
       return state.user.group.level
     }
     return '';

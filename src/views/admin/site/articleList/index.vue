@@ -14,7 +14,6 @@
 		<a-table
 			:columns="columns"
 			:rowKey="record => record.id"
-
 			:dataSource="data"
 			:pagination="pagination"
 			@change="handleTableChange"
@@ -44,6 +43,9 @@
 				<a-tag v-if="release_state === 0">未发布</a-tag>
 			</span>
 			<span slot="action" slot-scope="text,row">
+				<a-button size="small" v-if="row.state_verify==-1&&row.cross_site_quote==0">重新提交</a-button>
+				<a-button size="small" v-if="row.state_verify==0&&row.cross_site_quote==0">通过</a-button>
+				<a-button size="small" v-if="row.state_verify==0&&row.cross_site_quote==0">驳回</a-button>
 				<a-popconfirm title="是否发布这篇文章？" @confirm="publish(row.id)" v-if="$store.state.user.group.level !== 0">
 					<a-button size="small">发布</a-button>
 				</a-popconfirm>
@@ -54,7 +56,7 @@
 	</div>
 </template>
 <script>
-import { getArticleList } from "@/api/article";
+import { getArticleList, verify } from "@/api/article";
 import { buildContent } from "@/api/build";
 import filterForm from "./components/filterForm";
 import filterFormForUser from "./components/filterFormForUser";
