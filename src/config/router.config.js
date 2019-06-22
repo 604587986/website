@@ -5,6 +5,17 @@ import UserPanelLayout from '@/layouts/UserPanelLayout'//普通管理员工作�
 
 import RouteView from '@/layouts/RouteView'//封装过的router-view
 
+/*
+meta.roles->
+    0:系统管理员
+    1：主站管理员
+    2：分站管理员
+    3：领导
+    4：编辑
+    5：实习编辑
+*/
+
+
 export const adminRouter = [{
     path: '/',
     name: 'index',
@@ -309,7 +320,7 @@ export const userRouter = [{
                     path: '/links/list',
                     name: 'linksList',
                     component: () => import('@/views/user/links/list'),
-                    meta: { title: '友情链接列表', showInPanel: true, icon: 'youqinglianjie', roles: [1, 2, 3,  5] },
+                    meta: { title: '友情链接列表', showInPanel: true, icon: 'youqinglianjie', roles: [1, 2, 3, 5] },
 
                 },
             ]
@@ -325,7 +336,7 @@ export const userRouter = [{
                     path: '/carousel/list',
                     name: 'carouselList',
                     component: () => import('@/views/user/carousel/list'),
-                    meta: { title: '轮播图列表', showInPanel: true, icon: 'lunbo', roles: [1, 2, 3,  5] },
+                    meta: { title: '轮播图列表', showInPanel: true, icon: 'lunbo', roles: [1, 2, 3, 5] },
 
                 },
             ]
@@ -350,7 +361,7 @@ export const userRouter = [{
             path: '/databoard',
             name: 'databoard',
             component: () => import('@/views/user/databoard'),
-            meta: { title: '数据看板', showInPanel: true, icon: 'shujukanban', roles: [1, 2, 3,4, 5] }
+            meta: { title: '数据看板', showInPanel: true, icon: 'shujukanban', roles: [1, 2, 3, 4, 5] }
         },
         {
             path: '/web-build',

@@ -5,10 +5,6 @@ import Cookie from "js-cookie"
 import NProgress from "nprogress";
 import "nprogress/nprogress.css"; // progress bar style
 
-import { adminRouter, userRouter } from '@/config/router.config.js'
-
-
-
 
 const whiteList = ['/login']// no redirect whitelist
 
