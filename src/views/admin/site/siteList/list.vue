@@ -29,9 +29,7 @@
 				<a-button size="small" @click="mixin_jump('/site/edit-site/'+row.id)">编辑</a-button>
 			</span>
 		</a-table>
-		<a-modal title="管理员列表" :footer="null" destroyOnClose v-model="userPanelShow">
-			<user-panel :siteId="currentSiteId"/>
-		</a-modal>
+		<user-panel :siteId="currentSiteId" :userPanelShow.sync="userPanelShow" />
 	</div>
 </template>
 <script>
@@ -85,7 +83,7 @@ export default {
 			loading: false,
 			columns,
 			userPanelShow: false,
-			currentSiteId: null
+			currentSiteId: ""
 		};
 	},
 	components: {
