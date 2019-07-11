@@ -2,8 +2,8 @@ module.exports = {
     css: {
         loaderOptions: {
             less: {
-                modifyVars:{
-                    'table-header-color':'rgb(144, 147, 153)'
+                modifyVars: {
+                    'table-header-color': 'rgb(144, 147, 153)'
                 },
                 javascriptEnabled: true
             }
@@ -12,11 +12,11 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'https://myzq.q-huan.link',
+                target: process.env.api_url,
                 changeOrigin: true,
             },
             '/attachment': {
-                target: 'https://myzq.q-huan.link',
+                target: process.env.api_url,
                 changeOrigin: true,
             },
         }
